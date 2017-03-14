@@ -23,3 +23,16 @@ h1,h2 {
 #btnTop {
 	margin-left: 50%;
 }
+
+#newsOutput {
+	width: 50%;
+	height: auto;
+	margin: 0 auto;
+}
+
+.showNews {
+	width: auto;
+	height: auto;
+	border: 1px solid white;
+	margin-top: 50px;
+}
