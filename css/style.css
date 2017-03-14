@@ -9,3 +9,17 @@ html, body {
 	height: 100%;
 	background-color: red;
 }
+
+h1,h2 {
+	color: white;
+	text-align: center;
+}
+
+#news {
+	text-align: center;
+	color: white;
+}
+
+#btnTop {
+	margin-left: 50%;
+}

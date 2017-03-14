@@ -1,0 +1,23 @@
+
+	{
+		"movies": [
+			{
+				"id": 0,
+				"title": "The Lobster",
+				"year": 2015,
+				"genres": [
+					"Drama",
+					"Sci-Fi"
+				],
+				"ratings": [
+					8,
+					7,
+					8,
+					6,
+					9,
+					9,
+					10
+				]
+			}
+		]
+	}
