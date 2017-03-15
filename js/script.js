@@ -29,10 +29,10 @@ const newsMod = (() => {
           let newsDiv = `
           <div class="showNews">
           <img height="400" width="auto" src="${news[i].urlToImage}">
-          <h3>${news[i].author}</h3>
-          <p>${news[i].description}</p>
-          <p>${news[i].publishedAt}</p>
-          <p>${news[i].title}</p>
+          <h3>Headline: ${news[i].title}</h3>
+          <h3>Author: ${news[i].author}</h3>
+          <p>Description: ${news[i].description}</p>
+          <p>Date: ${news[i].publishedAt}</p>
           <a href="${news[i].url}">${news[i].url}</a>
           </div>`;
           newsOutput.innerHTML += newsDiv;
@@ -80,26 +80,15 @@ const newsMod = (() => {
                     let newsDiv = `
                     <div class="showNews">
                     <img height="400" width="auto" src="${news[i].urlToImage}">
-                    <h3>${news[i].author}</h3>
-                    <p>${news[i].description}</p>
-                    <p>${news[i].publishedAt}</p>
-                    <p>${news[i].title}</p>
+                    <h3>Headline: ${news[i].title}</h3>
+                    <h3>Author: ${news[i].author}</h3>
+                    <p>Description: ${news[i].description}</p>
+                    <p>Date: ${news[i].publishedAt}</p>
+                    <h2>Headline: ${news[i].title}</h2>
                     <a href="${news[i].url}">${news[i].url}</a>
                     </div>`;
                     newsOutput.innerHTML += newsDiv;
-                  };
-             /*     return news.map(function(news) {
-                  	let li = createNode("li"),
-                  	img = createNode("img"),
-                  	span = createNode("span");
-                  	img.src = news.urlToImage;
-                  	span.innerHTML = "";
-                  	span.innerHTML = `
-                  	<div>
-                  	<h3>${news.author}</h3>
-                  	<p>${news.title}</p>
-                  	<a href="${news.url}">${news.url}</a>
-                  	</div>`;*/            
+                  };          
     })
 .catch(function(error) {
   console.log(error);
