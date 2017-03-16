@@ -6,22 +6,18 @@
 
 html, body {
 	width: 100%;
-	height: 100%;
-	background-color: red;
+	
+	background-color: lightgrey;
 }
 
-h1,h2 {
+h1,h2,h4 {
 	color: white;
-	text-align: center;
+	
 }
 
 #news {
 	text-align: center;
 	color: white;
-}
-
-#btnTop {
-	margin-left: 50%;
 }
 
 #newsOutput {
@@ -30,9 +26,46 @@ h1,h2 {
 	margin: 0 auto;
 }
 
+.flexAllForms {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .showNews {
-	width: auto;
+	width: 800px;
 	height: auto;
 	border: 1px solid white;
 	margin-top: 50px;
+}
+
+.h2-news {
+	text-align: center;
+}
+
+.header-flex1 {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	border: 1px solid red;
+}
+
+.link-prep {
+	color: white;
+	font-size: 1rem;
+}
+
+.settings {
+	border: 1px solid black;
+}
+
+.addNews {
+	border: 1px solid yellow;
+}
+
+.newsOutlet {
+	
+	border: 1px solid green;
 }
