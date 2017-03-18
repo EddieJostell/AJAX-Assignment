@@ -3,52 +3,77 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"> -->
-	<link rel="stylesheet" type="text/css" href="css/avalanche.min.css">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/avalanche.min.css"> -->
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<title>AJAX-Assignment</title>
 </head>
 <body>
-<header class="text-uppercase container-fluid header-flex1 col-md-12 col-sm-6 col-xs-6">
+	<header class="text-uppercase container-fluid header-flex1">
 		<h4>Eddie's News Hub</h4>
-	    <a class="link-prep nav-link" id="sourceOfNews" href="#">General</a>
+		<a class="link-prep nav-link" id="sourceOfNews" href="#">General</a>
 		<a class="link-prep nav-link" id="latestNews" href="#">Latest</a>
-		<a class="link-prep nav-link" id="topNews" href="#">Top News</a>
-		<a class="link-prep nav-link" id="popularNews" href="#">Popular</a>
-		<a class="link-prep nav-link" id="sportsNews" href="#">Sports</a>
-		<a class="link-prep nav-link" id="musicNews" href="#">Music</a>
-		<a class="link-prep nav-link" id="natureNews" href="#">Nature</a>
-		<a class="link-prep nav-link" id="techNews" href="#">Technology</a>   
-	</header>
+		<!-- <a class="link-prep nav-link" id="topNews" href="#">Top News</a> -->
+		<div class="dropdown">
+			<button class="btn btn-secondary dropdown-toggle"
+			type="button" id="dropdownMenuTopNews" data-toggle="dropdown"
+			aria-haspopup="true" aria-expanded="false">
+			General
+		</button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuTopNews">
+			<a id="cnnNews" class="dropdown-item" href="#">CNN</a>
+			<a id="bbcNews" class="dropdown-item" href="#">BBC News</a>
+		</div>
+	</div>
+<!-- 	<a class="link-prep nav-link" id="popularNews" href="#">Popular</a> -->
+	<a class="link-prep nav-link" id="sportsNews" href="#">Sports</a>
+	<a class="link-prep nav-link" id="musicNews" href="#">Music</a>
+<!-- 	<div class="dropdown">
+		<button class="btn btn-secondary dropdown-toggle"
+		type="button" id="dropdownMenu1" data-toggle="dropdown"
+		aria-haspopup="true" aria-expanded="false">
+		Music
+	</button>
+	<div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+		<a id="mtvNews" class="dropdown-item" href="#">MTV</a>
+		<a id="mtvUkNews" class="dropdown-item" href="#">MTV-UK</a>
+	</div>
+</div> -->
+<a class="link-prep nav-link" id="businessNews" href="#">Business</a>
+<a class="link-prep nav-link" id="entertainmentNews" href="#">Entertainment</a>
+<a class="link-prep nav-link" id="natureNews" href="#">Nature and Science</a>
+<a class="link-prep nav-link" id="techNews" href="#">Technology</a>
+<a class="link-prep nav-link" id="gameNews" href="#">Gaming</a>    
+</header>
 
-	<main class="grid">
-		<div class="row">
-			<aside class="settings col-md-1">
-				<div class="newsSelector col-md-12 flexAllForms">
-					
+<main class="container-fluid">
+	<div class="row">
+		<aside class="settings col-md-1">
+			<div class="newsSelector col-md-12 flexAllForms">
 
-				</div>
-			</aside> 
-			<section class="newsOutlet col-md-11" >
-				<div class="row">
-					<section class="col-md-12" id="newsContainer">
-						<article id="newsOutput">
-							<!-- News comes here -->
-						</article>
-					</section>
-					
-				</div> <!-- end of row -->
-				<div class="row">
-					<section class="col-md-12" id="mostInteresting">
 
-					</section>
-				</div>
-			</section> <!-- end newsOutlet -->
-		</div> <!-- row -->
-	</main> <!-- container-fluid -->
-	<script src="https://code.jquery.com/jquery-3.1.1.slim.js" integrity="sha256-5i/mQ300M779N2OVDrl16lbohwXNUdzL/R2aVUXyXWA=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="js/script.js"></script>
+			</div>
+		</aside> 
+		<section class="newsOutlet col-md-11" >
+			<div class="row">
+				<section class="col-md-12" id="newsContainer">
+					<article id="newsOutput">
+						<!-- News comes here -->
+					</article>
+				</section>
+
+			</div> <!-- end of row -->
+			<div class="row">
+				<section class="col-md-12" id="mostInteresting">
+					<h4>Most Interesting</h4>
+				</section>
+			</div>
+		</section> <!-- end newsOutlet -->
+	</div> <!-- row -->
+</main> <!-- container-fluid -->
+<script src="https://code.jquery.com/jquery-3.1.1.slim.js" integrity="sha256-5i/mQ300M779N2OVDrl16lbohwXNUdzL/R2aVUXyXWA=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
