@@ -1,0 +1,11 @@
+{
+    "project_path": "/AJAX-Assignment/scss",
+	"output_path": "../css",
+	"options": {
+		"cache":         false,
+		"debug":         true,
+		"line-comments": false,
+		"line-numbers":  false,
+		"style":         "expanded"
+	}
+}

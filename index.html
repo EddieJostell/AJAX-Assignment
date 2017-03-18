@@ -1,111 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/avalanche.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<title>AJAX-Assignment</title>
 </head>
 <body>
-	<header class="container-fluid header-flex1">
+<header class="text-uppercase container-fluid header-flex1 col-md-12 col-sm-6 col-xs-6">
 		<h4>Eddie's News Hub</h4>
-		<a class="link-prep" id="sourceOfNews" href="#">Source</a>
-		<a class="link-prep" id="latestNews" href="#">Latest</a>
-		<a class="link-prep" id="topNews" href="#">Top News</a>
-		<a class="link-prep" id="popularNews" href="#">Popular</a>
-		<a class="link-prep" id="sportsNews" href="#">Sports</a>
-		<a class="link-prep" id="musicNews" href="#">Music</a>
-		<a class="link-prep" id="natureNews" href="#">Nature</a>
-		<a class="link-prep" id="redditNews" href="#">Reddit</a>  
-
-<!-- 		<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<h4 class="navbar-brand">Eddie's News Hub</h4>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-					<a id="latestNews" class="nav-link" href="#">Latest<span class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item">
-						<a id="topNews" class="nav-link" href="#">Top News</a>
-					</li>
-					<li class="nav-item">
-						<a id="popularNews" class="nav-link" href="#">Popular</a>
-					</li>
-					<li class="nav-item">
-						<a id="sportsNews" class="nav-link" href="#">Sports</a>
-					</li>
-					<li class="nav-item">
-						<a id="musicNews" class="nav-link" href="#">Music</a>
-					</li>
-					<li class="nav-item">
-						<a id="natureNews" class="nav-link" href="#">Nature</a>
-					</li>
-					<li class="nav-item">
-						<a id="redditNews" class="nav-link" href="#">Reddit</a>
-					</li>
-				</ul>
-			</div>
-		</nav> -->
+	    <a class="link-prep nav-link" id="sourceOfNews" href="#">General</a>
+		<a class="link-prep nav-link" id="latestNews" href="#">Latest</a>
+		<a class="link-prep nav-link" id="topNews" href="#">Top News</a>
+		<a class="link-prep nav-link" id="popularNews" href="#">Popular</a>
+		<a class="link-prep nav-link" id="sportsNews" href="#">Sports</a>
+		<a class="link-prep nav-link" id="musicNews" href="#">Music</a>
+		<a class="link-prep nav-link" id="natureNews" href="#">Nature</a>
+		<a class="link-prep nav-link" id="techNews" href="#">Technology</a>   
 	</header>
 
-	<main class="container-fluid">
+	<main class="grid">
 		<div class="row">
-			<aside class="settings col-md-3">
-				<section class="addNews col-md-12 col-sm-6 col-xs-4">
-					<h2 class="h2-news">News Panel</h2>
+			<aside class="settings col-md-1">
+				<div class="newsSelector col-md-12 flexAllForms">
+					
 
-					<form id="create-form" class="col-md-12 flexAllForms">
-						<div class="form-group">
-							<h4>Create new News</h4>
-						</div>
-						<div class="form-group">
-							<label for="title">Title</label>
-							<input type="text" class="form-control" id="title">
-						</div>
-						<div class="form-group">
-							<label for="author">Author</label>
-							<input type="text" class="form-control" id="author">
-						</div>
-						<div class="form-group">
-							<label for="cover">Image URL</label>
-							<input type="url" class="form-control" id="cover">
-						</div>
-						<div class="form-group">
-							<label for="description">Description</label>
-							<input type="textarea" class="form-control" id="description">
-						</div>
-						<div class="form-group">
-							<label for="date">Date published</label>
-							<input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
-						</div>
-						<div class="form-group">
-							<label for="source">News URL</label>
-							<input type="url" class="form-control" id="source">
-						</div>
-						<div class="form-group">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							<button id="btnAdd" type="button" class="btn btn-danger" data-dismiss="modal">Submit</button>
-						</div>
-					</form>
-				</section>
-			</aside>
-			<section class="newsOutlet col-md-9" id="newsOutput">
-				
-			</section>
+				</div>
+			</aside> 
+			<section class="newsOutlet col-md-11" >
+				<div class="row">
+					<section class="col-md-12" id="newsContainer">
+						<article id="newsOutput">
+							<!-- News comes here -->
+						</article>
+					</section>
+					
+				</div> <!-- end of row -->
+				<div class="row">
+					<section class="col-md-12" id="mostInteresting">
+
+					</section>
+				</div>
+			</section> <!-- end newsOutlet -->
 		</div> <!-- row -->
 	</main> <!-- container-fluid -->
-
-	
-
 	<script src="https://code.jquery.com/jquery-3.1.1.slim.js" integrity="sha256-5i/mQ300M779N2OVDrl16lbohwXNUdzL/R2aVUXyXWA=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
-
 </body>
 </html>

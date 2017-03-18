@@ -6,7 +6,6 @@
 
 html, body {
 	width: 100%;
-	
 	background-color: lightgrey;
 }
 
@@ -21,23 +20,24 @@ h1,h2,h4 {
 }
 
 #newsOutput {
-	width: 50%;
+	width: 100%;
 	height: auto;
 	margin: 0 auto;
 }
 
 .flexAllForms {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .showNews {
-	width: 800px;
+	width: 500px;
 	height: auto;
 	border: 1px solid white;
 	margin-top: 50px;
+	background-color: white;
 }
 
 .h2-news {
@@ -48,7 +48,7 @@ h1,h2,h4 {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	border: 1px solid red;
 }
 
@@ -61,11 +61,41 @@ h1,h2,h4 {
 	border: 1px solid black;
 }
 
-.addNews {
-	border: 1px solid yellow;
+.newsOutlet {
+	border: 1px solid green;
 }
 
-.newsOutlet {
-	
-	border: 1px solid green;
+#newsContainer {
+	border: 1px solid red;
+}
+
+#mostInteresting  {
+	height: 200px;
+	background-color: black;
+	border: 1px solid blue;
+}
+
+
+.img-responsive {
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
+
+.pt-15 {
+	padding-top: 15px !important;
+}
+
+@media (min-width: 768px) {
+    .bootstrap-vertical-nav .collapse {
+        display: block;
+    }
+}
+
+.cell-1 {
+	background-color: red;
+}
+
+.cell-2 {
+	background-color: blue;
 }
