@@ -9,11 +9,89 @@
 	<title>AJAX-Assignment</title>
 </head>
 <body>
-	<header class="text-uppercase container-fluid header-flex1">
-		<h4>Eddie's News Hub</h4>
-		<a class="link-prep nav-link" id="sourceOfNews" href="#">General</a>
-		<a class="link-prep nav-link" id="latestNews" href="#">Latest</a>
+	<header class=" container-fluid ">
+		<ul class="nav nav-tabs header-flex1">
+			<li class="nav-item">
+				<a class="nav-link" href="#">Eddie's News Hub</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+				href="#" role="button" aria-haspopup="true" aria-expanded="false">
+				General</a>
+				<div class="dropdown-menu">
+					<a id="cnnNews" class="dropdown-item" href="#">CNN</a>
+					<a id="bbcNews" class="dropdown-item" href="#">BBC News</a>
+					<a id="sourceOfNews" class="dropdown-item" href="#">More News</a>
+				</div>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+				href="#" role="button" aria-haspopup="true" aria-expanded="false">
+				Sports</a>
+				<div class="dropdown-menu">
+					<a id="skySportsNews" class="dropdown-item" href="#">Sky Sports News</a>
+					<a id="italiaNews" class="dropdown-item" href="#">Football Italia</a>
+					<a id="sportsNews" class="dropdown-item" href="#">More Sports</a>
+				</div>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+				href="#" role="button" aria-haspopup="true" aria-expanded="false">
+				Music</a>
+				<div class="dropdown-menu">
+					<a id="mtvNews" class="dropdown-item" href="#">MTV</a>
+					<a id="mtvUkNews" class="dropdown-item" href="#">MTV-UK</a>
+				</div>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+				href="#" role="button" aria-haspopup="true" aria-expanded="false">
+				Business</a>
+				<div class="dropdown-menu">
+					
+				</div>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+				href="#" role="button" aria-haspopup="true" aria-expanded="false">
+				Entertainment</a>
+				<div class="dropdown-menu">
+					
+				</div>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+				href="#" role="button" aria-haspopup="true" aria-expanded="false">
+				Nature and Science</a>
+				<div class="dropdown-menu">
+					
+				</div>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+				href="#" role="button" aria-haspopup="true" aria-expanded="false">
+				Technology</a>
+				<div class="dropdown-menu">
+					
+				</div>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+				href="#" role="button" aria-haspopup="true" aria-expanded="false">
+				Gaming</a>
+				<div class="dropdown-menu">
+					
+				</div>
+			</li>
+		</ul>
+		<!--<h4>Eddie's News Hub</h4>-->
+		<!-- <a class="link-prep nav-link" id="sourceOfNews" href="#">General</a> -->
 		<!-- <a class="link-prep nav-link" id="topNews" href="#">Top News</a> -->
+		<!-- <a class="link-prep nav-link" id="popularNews" href="#">Popular</a> -->
+		<!-- <a class="link-prep nav-link" id="sportsNews" href="#">Sports</a> -->
+		<!-- <a class="link-prep nav-link" id="musicNews" href="#">Music</a> -->
+		<!-- <a class="link-prep nav-link" id="latestNews" href="#">Latest</a>
+		
 		<div class="dropdown">
 			<button class="btn btn-secondary dropdown-toggle"
 			type="button" id="dropdownMenuTopNews" data-toggle="dropdown"
@@ -23,27 +101,39 @@
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuTopNews">
 			<a id="cnnNews" class="dropdown-item" href="#">CNN</a>
 			<a id="bbcNews" class="dropdown-item" href="#">BBC News</a>
+			<a id="sourceOfNews" class="dropdown-item" href="#">More News</a>
 		</div>
 	</div>
-<!-- 	<a class="link-prep nav-link" id="popularNews" href="#">Popular</a> -->
-	<a class="link-prep nav-link" id="sportsNews" href="#">Sports</a>
-	<a class="link-prep nav-link" id="musicNews" href="#">Music</a>
-<!-- 	<div class="dropdown">
+	
+	<div class="dropdown">
 		<button class="btn btn-secondary dropdown-toggle"
-		type="button" id="dropdownMenu1" data-toggle="dropdown"
+		type="button" id="dropdownMenuTopNews" data-toggle="dropdown"
 		aria-haspopup="true" aria-expanded="false">
-		Music
+		Sports
 	</button>
-	<div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-		<a id="mtvNews" class="dropdown-item" href="#">MTV</a>
-		<a id="mtvUkNews" class="dropdown-item" href="#">MTV-UK</a>
+	<div class="dropdown-menu" aria-labelledby="dropdownMenuTopNews">
+		<a id="skySportsNews" class="dropdown-item" href="#">Sky Sports News</a>
+		<a id="italiaNews" class="dropdown-item" href="#">Football Italia</a>
+		<a id="sportsNews" class="dropdown-item" href="#">More Sports</a>
 	</div>
-</div> -->
+</div>
+
+<div class="dropdown">
+	<button class="btn btn-secondary dropdown-toggle"
+	type="button" id="dropdownMenu1" data-toggle="dropdown"
+	aria-haspopup="true" aria-expanded="false">
+	Music
+</button>
+<div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+	<a id="mtvNews" class="dropdown-item" href="#">MTV</a>
+	<a id="mtvUkNews" class="dropdown-item" href="#">MTV-UK</a>
+</div>
+</div>
 <a class="link-prep nav-link" id="businessNews" href="#">Business</a>
 <a class="link-prep nav-link" id="entertainmentNews" href="#">Entertainment</a>
 <a class="link-prep nav-link" id="natureNews" href="#">Nature and Science</a>
 <a class="link-prep nav-link" id="techNews" href="#">Technology</a>
-<a class="link-prep nav-link" id="gameNews" href="#">Gaming</a>    
+<a class="link-prep nav-link" id="gameNews" href="#">Gaming</a>     -->
 </header>
 
 <main class="container-fluid">
