@@ -4,7 +4,7 @@ const newsMod = (() => {
 
 	return {
 
-		getNewsByArticles: (article) => {
+		showNewsByArticle: (article) => {
 			console.log(article);
 			let newsDiv = `
 			<div class="showNews col-md-4">
@@ -17,7 +17,7 @@ const newsMod = (() => {
 			</div>`;
 			newsOutput.innerHTML += newsDiv;
 		},
-		getNewsBySources: (source) => {
+		showNewsBySource: (source) => {
 			let sourceDiv = `
 			<div class="showNews">
 			<img img-responsive pt-15" src="${source.urlsToLogos.medium}">
@@ -34,9 +34,8 @@ const newsMod = (() => {
 			const url = "https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=ba003866cd1849ffb405924244eb308e";
 
 			fetch(url)
-			/*.then((resp) => resp.json()) // Transform the data into json*/
 			.then((response) => {
-				return response.json();
+				return response.json(); // Transform the data into json
 			})
 			.then(function(data) {
 				console.log(data);
@@ -61,27 +60,25 @@ const newsMod = (() => {
 				console.log(error);
 			});
 		},
-
-		generalNewsSource: () => {
-			const url = "https://newsapi.org/v1/sources?category=general&sortBysAvailable=latest&apiKey=ba003866cd1849ffb405924244eb308e";
-			fetch(url)
-			/*.then((resp) => resp.json()) // Transform the data into json*/
-			.then((response) => {
-				return response.json();
+       // ====================== GENERAL NEWS FUNCTIONS ===============================
+       generalNewsSource: () => {
+       	const url = "https://newsapi.org/v1/sources?category=general&sortBysAvailable=latest&apiKey=ba003866cd1849ffb405924244eb308e";
+       	fetch(url)
+       	.then((response) => {
+				return response.json(); // Transform the data into json
 			})
-			.then(function(data) {
-				console.log(data);
-				newsOutput.innerHTML = "";
-				let source = data.sources;
+       	.then(function(data) {
+       		console.log(data);
+       		newsOutput.innerHTML = "";
+       		let source = data.sources;
+       		for (var i = 0; i < source.length; i++) {
+       			newsMod.showNewsBySource(source[i]);
+       		};
+       	})
+       },
 
-				for (var i = 0; i < source.length; i++) {
-					newsMod.getNewsBySources(source[i]);
-				};
-			})
-		},
-		
-		getTopBBCNews: () => {
-			const urlBBC = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=ba003866cd1849ffb405924244eb308e";
+       getTopBBCNews: () => {
+       	const urlBBC = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=ba003866cd1849ffb405924244eb308e";
 
 			fetch(urlBBC) // Get Fetch method to grab the information from the API
 			.then((response) => {
@@ -91,7 +88,7 @@ const newsMod = (() => {
 				let news = data.articles;
 				newsOutput.innerHTML = "";
 				for (var i = 0; i < news.length; i++) {
-					newsMod.getNewsByArticles(news[i]);
+					newsMod.showNewsByArticle(news[i]);
 				};          
 			})
 			.catch(function(error) {
@@ -112,7 +109,7 @@ const newsMod = (() => {
                   let news = data.articles;
                   newsOutput.innerHTML = "";
                   for (var i = 0; i < news.length; i++) {
-                  	newsMod.getNewsByArticles(news[i]);
+                  	newsMod.showNewsByArticle(news[i]);
                   };          
                 })
 			.catch(function(error) {
@@ -135,7 +132,7 @@ const newsMod = (() => {
 				let skySports = data.articles;
 
 				for (var i = 0; i < skySports.length; i++) {
-					newsMod.getNewsByArticles(skySports[i]);
+					newsMod.showNewsByArticle(skySports[i]);
 				};          
 			})
 			.catch(function(error) {
@@ -146,9 +143,8 @@ const newsMod = (() => {
 			const italiaURL = "https://newsapi.org/v1/articles?source=football-italia&sortBy=latest&apiKey=ba003866cd1849ffb405924244eb308e";
 
 			fetch(italiaURL)
-			/* .then((resp) => resp.json()) // Transform the data into json*/
 			.then((response) => {
-				return response.json();
+				return response.json();  // Transform the data into json
 			})
 			.then(function(data) {
 				console.log(data);
@@ -156,7 +152,7 @@ const newsMod = (() => {
 				let footballItalia = data.articles;
 
 				for (var i = 0; i < footballItalia.length; i++) {
-					newsMod.getNewsByArticles(footballItalia[i]);
+					newsMod.showNewsByArticle(footballItalia[i]);
 				}; 
 			})
 			.catch(function(error) {
@@ -167,23 +163,76 @@ const newsMod = (() => {
 			const url = "https://newsapi.org/v1/sources?category=sport&language=en&apiKey=ba003866cd1849ffb405924244eb308e";
 
 			fetch(url)
-			/* .then((resp) => resp.json()) // Transform the data into json*/
 			.then((response) => {
-				return response.json();
+				return response.json(); // Transform the data into json
 			})
 			.then(function(data) {
 				console.log(data);
 				newsOutput.innerHTML = "";
 				let source = data.sources;
 				for (var i = 0; i < source.length; i++) {
-					newsMod.getNewsBySources(source[i]);
+					newsMod.showNewsBySource(source[i]);
 				};
 			})
 			.catch(function(error) {
 				console.log(error);
 			});
 		},
-
+		// ======================== BUSINESS NEWS FUNCTIONS =============================
+		getWallstreetNews: () => {
+			const wallStreetUrl = "https://newsapi.org/v1/articles?source=the-wall-street-journal&sortBy=top&apiKey=ba003866cd1849ffb405924244eb308e";
+			fetch(wallStreetUrl)
+			.then((response) => {
+				return response.json(); // Transform the data into json
+			})
+			.then(function(data) {
+				console.log(data);
+				newsOutput.innerHTML = "";
+				let wallStreet = data.articles;
+				for (var i = 0; i < wallStreet.length; i++) {
+					newsMod.showNewsByArticle(wallStreet[i]);
+				};
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
+		}, 
+		getFtimesNews: () => {
+			const fTimesUrl = " https://newsapi.org/v1/articles?source=financial-times&sortBy=latest&apiKey=ba003866cd1849ffb405924244eb308e";
+			fetch(fTimesUrl)
+			.then((response) => {
+				return response.json(); // Transform the data into json
+			})
+			.then(function(data) {
+				console.log(data);
+				newsOutput.innerHTML = "";
+				let fTimes= data.articles;
+				for (var i = 0; i < fTimes.length; i++) {
+					newsMod.showNewsByArticle(fTimes[i]);
+				};
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
+		},
+		getBusinessSources: () => {
+			const businessUrl = "https://newsapi.org/v1/sources?language=en&category=business&apiKey=ba003866cd1849ffb405924244eb308e";
+			fetch(businessUrl)
+			.then((response) => {
+				return response.json(); // Transform the data into json
+			})
+			.then(function(data) {
+				console.log(data);
+				newsOutput.innerHTML = "";
+				let bSource = data.sources;
+				for (var i = 0; i < bSource.length; i++) {
+					newsMod.showNewsBySource(bSource[i]);
+				};
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
+		},
 		getTechNews: () => {
 			const techUrl = "https://newsapi.org/v1/sources?category=technology&country=us&apiKey=ba003866cd1849ffb405924244eb308e";
 
@@ -214,37 +263,7 @@ const newsMod = (() => {
 				console.log(error);
 			});
 		},
-
-/*		getMusicNews: () => {
-			const musicUrl = "https://newsapi.org/v1/sources?category=music&apiKey=ba003866cd1849ffb405924244eb308e";
-
-			fetch(musicUrl)
-			.then((response) => {
-				return response.json();
-			})
-			.then(function(data) {
-				console.log(data);
-				newsOutput.innerHTML = "";
-				let music = data.sources;
-
-				for (var i = 0; i < music.length; i++) {
-					let musicDiv = `
-					<div class="showNews">
-					<img class="img-responsive pt-15" src="${music[i].urlsToLogos.medium}">
-					<h5>Source: ${music[i].name}</h5>
-					<h5>Category: ${music[i].category}</h5>
-					<p>Description: ${music[i].description}</p>
-					<p>Language: ${music[i].language}</p>
-					<p>Country: ${music[i].country}</p>
-					<a href="${music[i].url}">${music[i].url}</a>
-					</div>`;
-					newsOutput.innerHTML += musicDiv;
-				};
-			})
-			.catch(function(error) {
-				console.log(error);
-			});
-		},*/
+		// ============================ MUSIC NEWS FUNCTIONS ===========================
 		getMTVNews: () => {
 			const urlMTV = "https://newsapi.org/v1/articles?source=mtv-news&sortBy=latest&apiKey=ba003866cd1849ffb405924244eb308e";
 
@@ -258,7 +277,7 @@ const newsMod = (() => {
 				newsOutput.innerHTML = "";
 				let mtvNews = data.articles;
 				for (var i = 0; i < mtvNews.length; i++) {
-					newsMod.getNewsByArticles(mtvNews[i]);
+					newsMod.showNewsByArticle(mtvNews[i]);
 				}; 
 			})
 			.catch(function(error) {
@@ -276,7 +295,7 @@ const newsMod = (() => {
 				newsOutput.innerHTML = "";
 				let mtvUKNews = data.articles;
 				for (var i = 0; i < mtvUKNews.length; i++) {
-					newsMod.getNewsByArticles(mtvUKNews[i]);
+					newsMod.showNewsByArticle(mtvUKNews[i]);
 				}; 
 			})
 			.catch(function(error) {
@@ -330,7 +349,10 @@ document.getElementById("sportsNews").addEventListener("click", newsMod.getSport
 //Music News
 document.getElementById("mtvNews").addEventListener("click", newsMod.getMTVNews);
 document.getElementById("mtvUkNews").addEventListener("click", newsMod.getMTVUKNews);
-//document.getElementById("musicNews").addEventListener("click", newsMod.getMusicNews);
+//Business News
+document.getElementById("insiderNews").addEventListener("click", newsMod.getWallstreetNews);
+document.getElementById("bloomNews").addEventListener("click", newsMod.getFtimesNews);
+document.getElementById("businessNews").addEventListener("click", newsMod.getBusinessSources);
 
 //document.getElementById("gameNews").addEventListener("click", newsMod.getGamingNews);
 
