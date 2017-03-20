@@ -20,7 +20,8 @@ const newsMod = (() => {
 		showNewsBySource: (source) => {
 			let sourceDiv = `
 			<div class="showNews">
-			<img img-responsive pt-15" src="${source.urlsToLogos.medium}">
+			<img class="img-responsive pt-15" src="${source.urlsToLogos.medium}">
+			<h5>ID: ${source.id}</h5>
 			<h5>Source: ${source.name}</h5>
 			<h5>Category: ${source.category}</h5>
 			<p>Description: ${source.description}</p>
@@ -99,7 +100,6 @@ const newsMod = (() => {
 			const urlCnn = "https://newsapi.org/v1/articles?source=cnn&sortBy=top&apiKey=ba003866cd1849ffb405924244eb308e";
 
 			fetch(urlCnn)
-			/*.then((resp) => resp.json()) // Transform the data into json*/
 			.then((response) => {
 				return response.json();
 			})
@@ -116,7 +116,61 @@ const newsMod = (() => {
 				console.log(error);
 			});   
 		},
-
+     // ======================== BUSINESS NEWS FUNCTIONS =============================
+     getWallstreetNews: () => {
+     	const wallStreetUrl = "https://newsapi.org/v1/articles?source=the-wall-street-journal&sortBy=top&apiKey=ba003866cd1849ffb405924244eb308e";
+     	fetch(wallStreetUrl)
+     	.then((response) => {
+				return response.json(); // Transform the data into json
+			})
+     	.then(function(data) {
+     		console.log(data);
+     		newsOutput.innerHTML = "";
+     		let wallStreet = data.articles;
+     		for (var i = 0; i < wallStreet.length; i++) {
+     			newsMod.showNewsByArticle(wallStreet[i]);
+     		};
+     	})
+     	.catch(function(error) {
+     		console.log(error);
+     	});
+     }, 
+     getFtimesNews: () => {
+     	const fTimesUrl = " https://newsapi.org/v1/articles?source=financial-times&sortBy=latest&apiKey=ba003866cd1849ffb405924244eb308e";
+     	fetch(fTimesUrl)
+     	.then((response) => {
+				return response.json(); // Transform the data into json
+			})
+     	.then(function(data) {
+     		console.log(data);
+     		newsOutput.innerHTML = "";
+     		let fTimes= data.articles;
+     		for (var i = 0; i < fTimes.length; i++) {
+     			newsMod.showNewsByArticle(fTimes[i]);
+     		};
+     	})
+     	.catch(function(error) {
+     		console.log(error);
+     	});
+     },
+     getBusinessSources: () => {
+     	const businessUrl = "https://newsapi.org/v1/sources?n&category=business&apiKey=ba003866cd1849ffb405924244eb308e";
+     	fetch(businessUrl)
+     	.then((response) => {
+				return response.json(); // Transform the data into json
+			})
+     	.then(function(data) {
+     		console.log(data);
+     		newsOutput.innerHTML = "";
+     		let bSource = data.sources;
+     		for (var i = 0; i < bSource.length; i++) {
+     			newsMod.showNewsBySource(bSource[i]);
+     		};
+     	})
+     	.catch(function(error) {
+     		console.log(error);
+     	});
+     },
 		// ==================================== SPORTS NEWS FUNCTIONS ==============================
 		getSkySportsNews: () => {
 			const urlSkySports = "https://newsapi.org/v1/articles?source=sky-sports-news&sortBy=latest&apiKey=ba003866cd1849ffb405924244eb308e";
@@ -159,8 +213,8 @@ const newsMod = (() => {
 				console.log(error);
 			});
 		},
-		getSportsNews: () => {
-			const url = "https://newsapi.org/v1/sources?category=sport&language=en&apiKey=ba003866cd1849ffb405924244eb308e";
+		getSportsSources: () => {
+			const url = "https://newsapi.org/v1/sources?category=sport&apiKey=ba003866cd1849ffb405924244eb308e";
 
 			fetch(url)
 			.then((response) => {
@@ -172,91 +226,6 @@ const newsMod = (() => {
 				let source = data.sources;
 				for (var i = 0; i < source.length; i++) {
 					newsMod.showNewsBySource(source[i]);
-				};
-			})
-			.catch(function(error) {
-				console.log(error);
-			});
-		},
-		// ======================== BUSINESS NEWS FUNCTIONS =============================
-		getWallstreetNews: () => {
-			const wallStreetUrl = "https://newsapi.org/v1/articles?source=the-wall-street-journal&sortBy=top&apiKey=ba003866cd1849ffb405924244eb308e";
-			fetch(wallStreetUrl)
-			.then((response) => {
-				return response.json(); // Transform the data into json
-			})
-			.then(function(data) {
-				console.log(data);
-				newsOutput.innerHTML = "";
-				let wallStreet = data.articles;
-				for (var i = 0; i < wallStreet.length; i++) {
-					newsMod.showNewsByArticle(wallStreet[i]);
-				};
-			})
-			.catch(function(error) {
-				console.log(error);
-			});
-		}, 
-		getFtimesNews: () => {
-			const fTimesUrl = " https://newsapi.org/v1/articles?source=financial-times&sortBy=latest&apiKey=ba003866cd1849ffb405924244eb308e";
-			fetch(fTimesUrl)
-			.then((response) => {
-				return response.json(); // Transform the data into json
-			})
-			.then(function(data) {
-				console.log(data);
-				newsOutput.innerHTML = "";
-				let fTimes= data.articles;
-				for (var i = 0; i < fTimes.length; i++) {
-					newsMod.showNewsByArticle(fTimes[i]);
-				};
-			})
-			.catch(function(error) {
-				console.log(error);
-			});
-		},
-		getBusinessSources: () => {
-			const businessUrl = "https://newsapi.org/v1/sources?language=en&category=business&apiKey=ba003866cd1849ffb405924244eb308e";
-			fetch(businessUrl)
-			.then((response) => {
-				return response.json(); // Transform the data into json
-			})
-			.then(function(data) {
-				console.log(data);
-				newsOutput.innerHTML = "";
-				let bSource = data.sources;
-				for (var i = 0; i < bSource.length; i++) {
-					newsMod.showNewsBySource(bSource[i]);
-				};
-			})
-			.catch(function(error) {
-				console.log(error);
-			});
-		},
-		getTechNews: () => {
-			const techUrl = "https://newsapi.org/v1/sources?category=technology&country=us&apiKey=ba003866cd1849ffb405924244eb308e";
-
-			fetch(techUrl)
-			/*.then((resp) => resp.json()) // Transform the data into json*/
-			.then((response) => {
-				return response.json();
-			})
-			.then(function(data) {
-				console.log(data);
-				newsOutput.innerHTML = "";
-				let tech = data.sources;
-
-				for (var i = 0; i < tech.length; i++) {
-					let techDiv = `
-					<div class="showNews">
-					<img class="img-responsive pt-15" src="${tech[i].urlsToLogos.medium}">
-					<h5>Source: ${tech[i].name}</h5>
-					<h5>Category: ${tech[i].category}</h5>
-					<p>Description: ${tech[i].description}</p>
-					<p>Language: ${tech[i].language}</p>
-					<a href="${tech[i].url}">${tech[i].url}</a>
-					</div>`;
-					newsOutput.innerHTML += techDiv;
 				};
 			})
 			.catch(function(error) {
@@ -302,11 +271,141 @@ const newsMod = (() => {
 				console.log(error);
 			});
 		},
-		getGamingNews: () => {
+		getMusicSources: () => {
+			const musicSourceUrl =" https://newsapi.org/v1/sources?status=error&category=music&apiKey=ba003866cd1849ffb405924244eb308e";
+			fetch(musicSourceUrl)
+			.then((response) => {
+				console.log(response);
+				return response.json(); // Transform the data into json
+			})
+			.then(function(data) {
+				console.log(data);
+				newsOutput.innerHTML = "";
+				let musicSource = data.sources;
+				for (var i = 0; i < musicSource.length; i++) {
+					newsMod.showNewsBySource(musicSource[i]);
+				};
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
+		},
+		// ======================= ENTERTAINMENT NEWS FUNCTIONS ============================
+		getEnterWeeklyNews: () => {
+			const enterWeeklyUrl = "https://newsapi.org/v1/articles?source=entertainment-weekly&sortBy=top&apiKey=ba003866cd1849ffb405924244eb308e";
+			fetch(enterWeeklyUrl)
+			.then((response) => {
+				return response.json();
+			})
+			.then(function(data) {
+				console.log(data);
+				newsOutput.innerHTML = "";
+				let enterWeekly = data.articles;
+				for (var i = 0; i < enterWeekly.length; i++) {
+					newsMod.showNewsByArticle(enterWeekly[i]);
+				}; 
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
+		},
+		getLadBibleNews: () => {
+			const ladBibleUrl = "https://newsapi.org/v1/articles?source=the-lad-bible&sortBy=latest&apiKey=ba003866cd1849ffb405924244eb308e";
+			fetch(ladBibleUrl)
+			.then((response) => {
+				return response.json();
+			})
+			.then(function(data) {
+				console.log(data);
+				newsOutput.innerHTML = "";
+				let ladBible = data.articles;
+				for (var i = 0; i < ladBible.length; i++) {
+					newsMod.showNewsByArticle(ladBible[i]);
+				}; 
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
+		},
+		getEntertainmentSources: () => {
+			const entertainmentURL =" https://newsapi.org/v1/sources?&category=entertainment&apiKey=ba003866cd1849ffb405924244eb308e";
+			fetch(entertainmentURL)
+			.then((response) => {
+				console.log(response);
+				return response.json(); // Transform the data into json
+			})
+			.then(function(data) {
+				console.log(data);
+				newsOutput.innerHTML = "";
+				let entertainment = data.sources;
+				for (var i = 0; i < entertainment.length; i++) {
+					newsMod.showNewsBySource(entertainment[i]);
+				};
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
+		},
+		// ========================= SCIENCE AND NATURE NEWS FUNCTIONS ============================
+		getNatGeoNews: () => {
+			const natGeoUrl = "https://newsapi.org/v1/articles?source=national-geographic&sortBy=top&apiKey=ba003866cd1849ffb405924244eb308e";
+			fetch(natGeoUrl)
+			.then((response) => {
+				return response.json();
+			})
+			.then(function(data) {
+				console.log(data);
+				newsOutput.innerHTML = "";
+				let natGeo = data.articles;
+				for (var i = 0; i < natGeo.length; i++) {
+					newsMod.showNewsByArticle(natGeo[i]);
+				}; 
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
+		},
+		getScientistNews: () => {
+			const scientistUrl = " https://newsapi.org/v1/articles?source=new-scientist&sortBy=top&apiKey=ba003866cd1849ffb405924244eb308e";
+			fetch(scientistUrl)
+			.then((response) => {
+				return response.json();
+			})
+			.then(function(data) {
+				console.log(data);
+				newsOutput.innerHTML = "";
+				let scientist = data.articles;
+				for (var i = 0; i < scientist.length; i++) {
+					newsMod.showNewsByArticle(scientist[i]);
+				}; 
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
+		},
+		getNatureSources: () => {
+			const scienceNatureUrl = "https://newsapi.org/v1/sources?&category=science-and-nature&apiKey=ba003866cd1849ffb405924244eb308e";
+			fetch(scienceNatureUrl)
+			.then((response) => {
+				console.log(response);
+				return response.json(); // Transform the data into json
+			})
+			.then(function(data) {
+				console.log(data);
+				newsOutput.innerHTML = "";
+				let scienceNature = data.sources;
+				for (var i = 0; i < scienceNature.length; i++) {
+					newsMod.showNewsBySource(scienceNature[i]);
+				};
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
+		},
+	/*	getGamingNews: () => {
 			const gameUrl = "https://newsapi.org/v1/sources?category=gaming&apiKey=ba003866cd1849ffb405924244eb308e";
 
 			fetch(gameUrl)
-			/*.then((resp) => resp.json()) // Transform the data into json*/
 			.then((response) => {
 				return response.json();
 			})
@@ -332,7 +431,39 @@ const newsMod = (() => {
 			.catch(function(error) {
 				console.log(error);
 			});
-		}
+		},
+			getTechNews: () => {
+			const techUrl = "https://newsapi.org/v1/sources?category=technology&country=us&apiKey=ba003866cd1849ffb405924244eb308e";
+
+			fetch(techUrl)
+			.then((resp) => resp.json()) // Transform the data into json
+			.then((response) => {
+				return response.json();
+			})
+			.then(function(data) {
+				console.log(data);
+				newsOutput.innerHTML = "";
+				let tech = data.sources;
+
+				for (var i = 0; i < tech.length; i++) {
+					let techDiv = `
+					<div class="showNews">
+					<img class="img-responsive pt-15" src="${tech[i].urlsToLogos.medium}">
+					<h5>Source: ${tech[i].name}</h5>
+					<h5>Category: ${tech[i].category}</h5>
+					<p>Description: ${tech[i].description}</p>
+					<p>Language: ${tech[i].language}</p>
+					<a href="${tech[i].url}">${tech[i].url}</a>
+					</div>`;
+					newsOutput.innerHTML += techDiv;
+				};
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
+		},
+
+		*/
 	}
 
 })();
@@ -342,17 +473,26 @@ newsMod.getLatestNews();
 document.getElementById("cnnNews").addEventListener("click", newsMod.getTopCNNNews);
 document.getElementById("bbcNews").addEventListener("click", newsMod.getTopBBCNews);
 document.getElementById("sourceOfNews").addEventListener("click", newsMod.generalNewsSource);
-//Sports News
-document.getElementById("skySportsNews").addEventListener("click", newsMod.getSkySportsNews);
-document.getElementById("italiaNews").addEventListener("click", newsMod.getFootballItaliaNews);
-document.getElementById("sportsNews").addEventListener("click", newsMod.getSportsNews);
-//Music News
-document.getElementById("mtvNews").addEventListener("click", newsMod.getMTVNews);
-document.getElementById("mtvUkNews").addEventListener("click", newsMod.getMTVUKNews);
 //Business News
 document.getElementById("insiderNews").addEventListener("click", newsMod.getWallstreetNews);
 document.getElementById("bloomNews").addEventListener("click", newsMod.getFtimesNews);
 document.getElementById("businessNews").addEventListener("click", newsMod.getBusinessSources);
+//Sports News
+document.getElementById("skySportsNews").addEventListener("click", newsMod.getSkySportsNews);
+document.getElementById("italiaNews").addEventListener("click", newsMod.getFootballItaliaNews);
+document.getElementById("sportsNews").addEventListener("click", newsMod.getSportsSources);
+//Music News
+document.getElementById("mtvNews").addEventListener("click", newsMod.getMTVNews);
+document.getElementById("mtvUkNews").addEventListener("click", newsMod.getMTVUKNews);
+document.getElementById("musicNews").addEventListener("click", newsMod.getMusicSources);
+//Entertainment News
+document.getElementById("enterWeekNews").addEventListener("click", newsMod.getEnterWeeklyNews);
+document.getElementById("ladbibleNews").addEventListener("click", newsMod.getLadBibleNews);
+document.getElementById("entertainmentNews").addEventListener("click", newsMod.getEntertainmentSources);
+//Science and Nature News
+document.getElementById("natGeoNews").addEventListener("click", newsMod.getNatGeoNews);
+document.getElementById("scientistNews").addEventListener("click", newsMod.getScientistNews);
+document.getElementById("scienceNatureNews").addEventListener("click", newsMod.getNatureSources);
 
 //document.getElementById("gameNews").addEventListener("click", newsMod.getGamingNews);
 
