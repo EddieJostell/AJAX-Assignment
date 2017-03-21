@@ -110,7 +110,7 @@ const newsMod = (() => {
 				console.log(error);
 			});
 		},
-		fetchPostArticles () {
+		fetchPostArticles ()  {
 			fetch('http://localhost:3000/movies', {
 				method: 'POST', 
 				mode: 'cors',
