@@ -10,133 +10,91 @@
 </head>
 <body>
 	<main class="container-fluid">
-		<header class=" container-fluid ">
-			<ul class="nav nav-tabs header-flex1">
-				<li class="nav-item">
-					<a class="nav-link text-uppercase" href="#">Eddie's News Hub</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown"
-					href="#" role="button" aria-haspopup="true" aria-expanded="false">General</a>
-					<div class="dropdown-menu">
-						<a id="cnnNews" class="dropdown-item" href="#">CNN</a>
-						<a id="bbcNews" class="dropdown-item" href="#">BBC News</a>
-						<a id="sourceOfNews" class="dropdown-item" href="#">More News</a>
-					</div>
-				</li>
-			</li>
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-toggle="dropdown"
-				href="#" role="button" aria-haspopup="true" aria-expanded="false">Business</a>
-				<div class="dropdown-menu">
-					<a id="insiderNews" class="dropdown-item" href="#">The Wall Street Journal</a>
-					<a id="bloomNews" class="dropdown-item" href="#">Financial Times</a>
-					<a id="businessNews" class="dropdown-item" href="#">More Business News</a>
-				</div>
-			</li>
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-toggle="dropdown"
-				href="#" role="button" aria-haspopup="true" aria-expanded="false">Sports</a>
-				<div class="dropdown-menu">
-					<a id="skySportsNews" class="dropdown-item" href="#">Sky Sports News</a>
-					<a id="italiaNews" class="dropdown-item" href="#">Football Italia</a>
-					<a id="sportsNews" class="dropdown-item" href="#">More Sports</a>
-				</div>
-			</li>
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-toggle="dropdown"
-				href="#" role="button" aria-haspopup="true" aria-expanded="false">Music</a>
-				<div class="dropdown-menu">
-					<a id="mtvNews" class="dropdown-item" href="#">MTV</a>
-					<a id="mtvUkNews" class="dropdown-item" href="#">MTV-UK</a>
-					<a id="musicNews" class="dropdown-item" href="#">More Music News</a>
-				</div>
-				
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown"
-					href="#" role="button" aria-haspopup="true" aria-expanded="false">Entertainment</a>
-					<div class="dropdown-menu">
-						<a id="enterWeekNews" class="dropdown-item" href="#">Entertainment Weekly</a>
-						<a id="ladbibleNews" class="dropdown-item" href="#">The LAD bible</a>
-						<a id="entertainmentNews" class="dropdown-item" href="#">More Entertainment News</a>
-					</div>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown"
-					href="#" role="button" aria-haspopup="true" aria-expanded="false">Science and Nature</a>
-					<div class="dropdown-menu">
-						<a id="natGeoNews" class="dropdown-item" href="#">National Geographic</a>
-						<a id="scientistNews" class="dropdown-item" href="#">New Scientist</a>
-						<a id="scienceNatureNews" class="dropdown-item" href="#">More Science and Nature News</a>
-					</div>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown"
-					href="#" role="button" aria-haspopup="true" aria-expanded="false">Technology</a>
-					<div class="dropdown-menu">
+		<div class="row">
 
+
+			<header class=" container-fluid ">
+				<ul class="nav nav-tabs header-flex1">
+					<li class="nav-item">
+						<a class="nav-link text-uppercase" id="latestNews" href="#">Eddie's News Hub</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+						href="#" role="button" aria-haspopup="true" aria-expanded="false">General</a>
+						<div class="dropdown-menu">
+							<a id="cnn" class="dropdown-item" href="#">CNN</a>
+							<a id="bbc-news" class="dropdown-item" href="#">BBC News</a>
+							<a id="general" class="dropdown-item" href="#">More News</a>
+						</div>
+					</li>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+					href="#" role="button" aria-haspopup="true" aria-expanded="false">Business</a>
+					<div class="dropdown-menu">
+						<a id="the-wall-street-journal" class="dropdown-item" href="#">The Wall Street Journal</a>
+						<a id="financial-times" class="dropdown-item" href="#">Financial Times</a>
+						<a id="business" class="dropdown-item" href="#">More Business News</a>
 					</div>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" data-toggle="dropdown"
-					href="#" role="button" aria-haspopup="true" aria-expanded="false">Gaming</a>
+					href="#" role="button" aria-haspopup="true" aria-expanded="false">Sports</a>
 					<div class="dropdown-menu">
-
+						<a id="sky-sports-news" class="dropdown-item" href="#">Sky Sports News</a>
+						<a id="football-italia" class="dropdown-item" href="#">Football Italia</a>
+						<a id="sport" class="dropdown-item" href="#">More Sports</a>
 					</div>
 				</li>
-			</ul>
-			<!--<h4>Eddie's News Hub</h4>-->
-			<!-- <a class="link-prep nav-link" id="sourceOfNews" href="#">General</a> -->
-			<!-- <a class="link-prep nav-link" id="topNews" href="#">Top News</a> -->
-			<!-- <a class="link-prep nav-link" id="popularNews" href="#">Popular</a> -->
-			<!-- <a class="link-prep nav-link" id="sportsNews" href="#">Sports</a> -->
-			<!-- <a class="link-prep nav-link" id="musicNews" href="#">Music</a> -->
-		<!-- <a class="link-prep nav-link" id="latestNews" href="#">Latest</a>
-		
-		<div class="dropdown">
-			<button class="btn btn-secondary dropdown-toggle"
-			type="button" id="dropdownMenuTopNews" data-toggle="dropdown"
-			aria-haspopup="true" aria-expanded="false">
-			General
-		</button>
-		<div class="dropdown-menu" aria-labelledby="dropdownMenuTopNews">
-			<a id="cnnNews" class="dropdown-item" href="#">CNN</a>
-			<a id="bbcNews" class="dropdown-item" href="#">BBC News</a>
-			<a id="sourceOfNews" class="dropdown-item" href="#">More News</a>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+					href="#" role="button" aria-haspopup="true" aria-expanded="false">Music</a>
+					<div class="dropdown-menu">
+						<a id="mtv-news" class="dropdown-item" href="#">MTV</a>
+						<a id="mtv-news-uk" class="dropdown-item" href="#">MTV-UK</a>
+						<a id="music" class="dropdown-item" href="#">More Music News</a>
+					</div>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+						href="#" role="button" aria-haspopup="true" aria-expanded="false">Entertainment</a>
+						<div class="dropdown-menu">
+							<a id="entertainment-weekly" class="dropdown-item" href="#">Entertainment Weekly</a>
+							<a id="the-lad-bible" class="dropdown-item" href="#">The LAD bible</a>
+							<a id="entertainment" class="dropdown-item" href="#">More Entertainment News</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+						href="#" role="button" aria-haspopup="true" aria-expanded="false">Science and Nature</a>
+						<div class="dropdown-menu">
+							<a id="national-geographic" class="dropdown-item" href="#">National Geographic</a>
+							<a id="new-scientist" class="dropdown-item" href="#">New Scientist</a>
+							<a id="science-and-nature" class="dropdown-item" href="#">More Science and Nature News</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+						href="#" role="button" aria-haspopup="true" aria-expanded="false">Technology</a>
+						<div class="dropdown-menu">
+							<a id="techcrunch" class="dropdown-item" href="#">TechCrunch</a>
+							<a id="the-verge" class="dropdown-item" href="#">´The Verge</a>
+							<a id="technology" class="dropdown-item" href="#">More Tech News</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+						href="#" role="button" aria-haspopup="true" aria-expanded="false">Gaming</a>
+						<div class="dropdown-menu">
+							<a id="ign" class="dropdown-item" href="#">Imagine Games Network</a>
+							<a id="polygon" class="dropdown-item" href="#">Polygon</a>
+							<a id="gaming" class="dropdown-item" href="#">More Gaming News</a>
+						</div>
+					</li>
+				</ul>
+			</header>
 		</div>
-	</div>
-	
-	<div class="dropdown">
-		<button class="btn btn-secondary dropdown-toggle"
-		type="button" id="dropdownMenuTopNews" data-toggle="dropdown"
-		aria-haspopup="true" aria-expanded="false">
-		Sports
-	</button>
-	<div class="dropdown-menu" aria-labelledby="dropdownMenuTopNews">
-		<a id="skySportsNews" class="dropdown-item" href="#">Sky Sports News</a>
-		<a id="italiaNews" class="dropdown-item" href="#">Football Italia</a>
-		<a id="sportsNews" class="dropdown-item" href="#">More Sports</a>
-	</div>
-</div>
-
-<div class="dropdown">
-	<button class="btn btn-secondary dropdown-toggle"
-	type="button" id="dropdownMenu1" data-toggle="dropdown"
-	aria-haspopup="true" aria-expanded="false">
-	Music
-</button>
-<div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-	<a id="mtvNews" class="dropdown-item" href="#">MTV</a>
-	<a id="mtvUkNews" class="dropdown-item" href="#">MTV-UK</a>
-</div>
-</div>
-<a class="link-prep nav-link" id="businessNews" href="#">Business</a>
-<a class="link-prep nav-link" id="entertainmentNews" href="#">Entertainment</a>
-<a class="link-prep nav-link" id="natureNews" href="#">Nature and Science</a>
-<a class="link-prep nav-link" id="techNews" href="#">Technology</a>
-<a class="link-prep nav-link" id="gameNews" href="#">Gaming</a>     -->
-</header>
-<div class="row">
+		<div class="row">
 	<!-- <aside class="settings col-md-1">
 		<div class="newsSelector col-md-12 flexAllForms">
 
@@ -148,6 +106,7 @@
 			<section class="col-md-12" id="newsContainer">
 				<article id="newsOutput">
 					<!-- News comes here -->
+
 				</article>
 			</section>
 
@@ -155,6 +114,7 @@
 		<div class="row">
 			<section class="col-md-12" id="mostInteresting">
 				<h4>Most Interesting</h4>
+				<button class="btn btn-outline-danger" id="btnSave">Save News</button>
 			</section>
 		</div>
 	</section> <!-- end newsOutlet -->
