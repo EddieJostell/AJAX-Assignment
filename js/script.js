@@ -3,39 +3,58 @@ console.log("AJAX-ASSIGNMENT");
 const newsMod = (() => {
 
 	return {
+      		getLatestNews: () => {
+			const url = "https://newsapi.org/v1/articles?source=reddit-r-all&sortBy=latest&apiKey=ba003866cd1849ffb405924244eb308e";
 
-		showNewsByArticle: (article) => {
-			console.log(article);
-			let newsDiv = `
-			<div class="showNews col-md-4" data-article="${JSON.stringify(article)}">
-			<img class="img-responsive pt-15" src="${article.urlToImage}">
-			<h5>Headline: ${article.title}</h5>
-			<h5>Author: ${article.author}</h5>
-			<p>Description: ${article.description}</p>
-			<p>Date: ${article.publishedAt}</p>
-			<a href="${article.url}" target="_blank">${article.url}</a>
-			<br>
-			<button id="btnSave" class="btn btn-outline-danger" value="Save News">Save News</button>
-			</div>`;
-			newsOutput.innerHTML += newsDiv;
-			document.getElementById("btnSave").addEventListener("click", newsMod.fetchPostArticles);
+			fetch(url)
+			.then((response) => {
+				return response.json(); // Transform the data into json
+			})
+			.then(function(data) {
+				//console.log(data);
+				let news = data.articles;
+				newsOutput.innerHTML = "";
+				for (var i = 0; i < news.length; i++) {
+					let newsDiv = `
+					<div class="showNews col-md-4">
+					<img class="img-responsive pt-15" src="${news[i].urlToImage}">
+					<h5>Headline: ${news[i].title}</h5>
+					<h5>Author: ${news[i].author}</h5>
+					<p>Description: ${news[i].description}</p>
+					<p>Date: ${news[i].publishedAt}</p>
+					<a href="${news[i].url}" target="_blank">${news[i].url}</a>
+					<br>
+					<button id="btnSave" class="btn btn-outline-danger" value="Save News">Save News</button>
+					</div>`;
+					newsOutput.innerHTML += newsDiv;
+				};
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
 		},
-		showNewsBySource: (source) => {
-			let sourceDiv = `
-			<div class="showNews">
-			<img class="img-responsive pt-15" src="${source.urlsToLogos.medium}">
-			<h5>ID: ${source.id}</h5>
-			<h5>Source: ${source.name}</h5>
-			<h5>Category: ${source.category}</h5>
-			<p>Description: ${source.description}</p>
-			<p>Language: ${source.language}</p>
-			<p>Country: ${source.country}</p>
-			<a href="${source.url}" target="_blank">${source.url}</a>
-			</div>`;
-			newsOutput.innerHTML += sourceDiv;
-		},
+			//FindArticleById is a function that is called when pressing on a link to a specific news station in the navbar on the DOM. (BBC for example).
+			//The function activates getApiByArticles and sends along the id of the EventListnener that has been activated when you press on the link.
+			//getApiByArticles takes the ID as a parameter and puts it into fetchGetArticles along with the API URL that is used to get information from the News API that I am using.
+			//That way I dont have to make a new function and a new API URL for every news station that I want to show news from.
+			//fetchGetArticles then makes a fetch GET request to the API and you get data back formated in JSON, then I loop through the array of objekts (articles) and send them to
+			//showNewsByArticle where I use a template literal to display the articles on the HTML.
 
-		fetchGetArticles: (apiArticleUrl) => {
+			//Same procedure for findSourcesByCategory, getApiBySourcesm fetchGetSources and showNewsBySources
+			//But instead of showing articles from different News stations you get different news stations within different categories.
+			findArticleById(){
+				newsMod.getApiByArticles(this.id);
+			},
+			findSourceByCategory() {
+				newsMod.getApiBySources(this.id);
+			},
+			getApiByArticles: (inputSrc) => {
+				newsMod.fetchGetArticles(`https://newsapi.org/v1/articles?source=${inputSrc}&sortBy=top&apiKey=ba003866cd1849ffb405924244eb308e`);
+			},
+			getApiBySources: (inputCat) => {
+				newsMod.fetchGetSources(`https://newsapi.org/v1/sources?category=${inputCat}&apiKey=ba003866cd1849ffb405924244eb308e`);
+			},
+			fetchGetArticles: (apiArticleUrl) => {
 			fetch(apiArticleUrl) // Get Fetch method to grab the information from the API
 			.then((response) => {
 				return response.json();		 // Transform the data into json
@@ -68,63 +87,53 @@ const newsMod = (() => {
 				console.log(error);
 			});
 		},
-		findArticleById(){
-			newsMod.getApiByArticles(this.id);
+		showNewsByArticle: (article) =>  {
+			console.log(article);
+			let newsDiv = `
+			<div class="showNews col-md-4" data-article="${JSON.stringify(article)}">
+			<img class="img-responsive pt-15" src="${article.urlToImage}">
+			<h5>Headline: ${article.title}</h5>
+			<h5>Author: ${article.author}</h5>
+			<p>Description: ${article.description}</p>
+			<p>Date: ${article.publishedAt}</p>
+			<a href="${article.url}" target="_blank">${article.url}</a>
+			<br>
+			<button id="btnSave" class="btn btn-outline-danger" value="Save News">Save News</button>
+			</div>`;
+			newsOutput.innerHTML += newsDiv;
+			document.getElementById("btnSave").addEventListener("click", newsMod.fetchPostArticles);
+			console.log(typeof JSON.stringify(article));
 		},
-		findSourceByCategory() {
-			newsMod.getApiBySources(this.id);
+		showNewsBySource: (source) => {
+			let sourceDiv = `
+			<div class="showNews">
+			<img class="img-responsive pt-15" src="${source.urlsToLogos.medium}">
+			<h5>ID: ${source.id}</h5>
+			<h5>Source: ${source.name}</h5>
+			<h5>Category: ${source.category}</h5>
+			<p>Description: ${source.description}</p>
+			<p>Language: ${source.language}</p>
+			<p>Country: ${source.country}</p>
+			<a href="${source.url}" target="_blank">${source.url}</a>
+			</div>`;
+			newsOutput.innerHTML += sourceDiv;
 		},
-		getApiByArticles: (inputSrc) => {
-			newsMod.fetchGetArticles(`https://newsapi.org/v1/articles?source=${inputSrc}&sortBy=top&apiKey=ba003866cd1849ffb405924244eb308e`);
-		},
-		getApiBySources: (inputCat) => {
-			newsMod.fetchGetSources(`https://newsapi.org/v1/sources?category=${inputCat}&apiKey=ba003866cd1849ffb405924244eb308e`);
-		},
-		getLatestNews: () => {
-			const url = "https://newsapi.org/v1/articles?source=reddit-r-all&sortBy=latest&apiKey=ba003866cd1849ffb405924244eb308e";
 
-			fetch(url)
-			.then((response) => {
-				return response.json(); // Transform the data into json
-			})
-			.then(function(data) {
-				//console.log(data);
-				let news = data.articles;
-				newsOutput.innerHTML = "";
-				for (var i = 0; i < news.length; i++) {
-					let newsDiv = `
-					<div class="showNews col-md-4">
-					<img class="img-responsive pt-15" src="${news[i].urlToImage}">
-					<h5>Headline: ${news[i].title}</h5>
-					<h5>Author: ${news[i].author}</h5>
-					<p>Description: ${news[i].description}</p>
-					<p>Date: ${news[i].publishedAt}</p>
-					<a href="${news[i].url}" target="_blank">${news[i].url}</a>
-					<br>
-					<button id="btnSave" class="btn btn-outline-danger" value="Save News">Save News</button>
-					</div>`;
-					newsOutput.innerHTML += newsDiv;
-				};
-			})
-			.catch(function(error) {
-				console.log(error);
-			});
-		},
 		fetchPostArticles ()  {
 			fetch('http://localhost:3000/movies', {
 				method: 'POST', 
 				mode: 'cors',
-				body: JSON.parse(this.dataset.article),
+				body: this.dataset.article,
 				redirect: 'follow',
 				headers: new Headers({
 					'Content-Type': 'application/json'
 				})
 			}).then(function(data) {
-				console.log(data);
-				return data;
+				console.log("Är detta rätt data? " + data);
+				return JSON.stringify(data);
 			})
-			.catch(function(error) {
-               console.log(error);
+			.catch(function (error) {  
+				console.log('Requestet failade', error);  
 			});
 		}
 	}
@@ -170,3 +179,10 @@ document.getElementById("gaming").addEventListener("click", newsMod.findSourceBy
 
 //GET POST EventListener
 //document.getElementById("btnSave").addEventListener("click", newsMod.fetchPostArticles);
+
+/*JSON.stringify({
+					title: "Spectre",
+					year: 2015,
+					genres: ["Action", "Thriller", "Mystery"],
+					ratings: [9,9,9,9,9,9]
+					})*/
