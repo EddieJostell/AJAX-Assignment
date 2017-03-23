@@ -3,8 +3,8 @@ console.log("AJAX-ASSIGNMENT");
 const newsMod = (() => {
 
 	return {
-      		getLatestNews: () => {
-			const url = "https://newsapi.org/v1/articles?source=reddit-r-all&sortBy=latest&apiKey=ba003866cd1849ffb405924244eb308e";
+		getLatestNews: () => {
+			const url = "https://newsapi.org/v1/articles?source=ign&sortBy=latest&apiKey=ba003866cd1849ffb405924244eb308e";
 
 			fetch(url)
 			.then((response) => {
@@ -88,9 +88,9 @@ const newsMod = (() => {
 			});
 		},
 		showNewsByArticle: (article) =>  {
-			console.log(article);
+			//console.log(article);
 			let newsDiv = `
-			<div class="showNews col-md-4" data-article="${JSON.stringify(article)}">
+			<div class="showNews col-lg-4 col-md-2 col-sm-2">
 			<img class="img-responsive pt-15" src="${article.urlToImage}">
 			<h5>Headline: ${article.title}</h5>
 			<h5>Author: ${article.author}</h5>
@@ -98,15 +98,16 @@ const newsMod = (() => {
 			<p>Date: ${article.publishedAt}</p>
 			<a href="${article.url}" target="_blank">${article.url}</a>
 			<br>
-			<button id="btnSave" class="btn btn-outline-danger" value="Save News">Save News</button>
+			<button id="btnSave" class="btn btn-outline-danger" value="Save News" data-article='${JSON.stringify(article)}'>Save News</button>
 			</div>`;
 			newsOutput.innerHTML += newsDiv;
-			document.getElementById("btnSave").addEventListener("click", newsMod.fetchPostArticles);
-			console.log(typeof JSON.stringify(article));
+			document.getElementById("btnSave").addEventListener("click", function(event) {
+				newsMod.saveFavoriteNews(event);
+			});
 		},
 		showNewsBySource: (source) => {
 			let sourceDiv = `
-			<div class="showNews">
+			<div class="showNews col-lg-4 col-md-2 col-sm-2">
 			<img class="img-responsive pt-15" src="${source.urlsToLogos.medium}">
 			<h5>ID: ${source.id}</h5>
 			<h5>Source: ${source.name}</h5>
@@ -119,28 +120,67 @@ const newsMod = (() => {
 			newsOutput.innerHTML += sourceDiv;
 		},
 
-		fetchPostArticles ()  {
-			fetch('http://localhost:3000/movies', {
+		
+		saveFavoriteNews: (event) =>  {
+			//Getting  the data-object from the button that we pressed to save the news to the database
+			//and put it into a variable that is fetch POSTED to my "database" (json-server on newsAPI.json). 
+			let articleInfo = document.getElementById(event.target.id).dataset.article;
+
+			fetch('http://localhost:3000/articles', {
 				method: 'POST', 
 				mode: 'cors',
-				body: this.dataset.article,
+				body: articleInfo,
 				redirect: 'follow',
 				headers: new Headers({
 					'Content-Type': 'application/json'
 				})
 			}).then(function(data) {
-				console.log("Är detta rätt data? " + data);
-				return JSON.stringify(data);
+				alert("Article saved in the database");
 			})
 			.catch(function (error) {  
 				console.log('Requestet failade', error);  
 			});
-		}
-	}
+			newsMod.getArticlesFromDatabase();
+		},
+		getArticlesFromDatabase: () => {
+			fetch('http://localhost:3000/articles') 
+			.then((response) => {
+				return response.json();		 // Transform the data into json
+			})
+			.then(function(savedNews) { 
+				console.log(savedNews);
+			// Puts the fetch response into the parameter "data".
+				 //mostInteresting.innerHTML = "";
+				for (var i = 0; i < savedNews.length; i++) {
+			     newsMod.showSavedArticlesOnHtml(savedNews[i]);
+				};
+			})
+			.catch(function(error) {
+				console.log(error);
+			});		
+		},
+		showSavedArticlesOnHtml: (savedArticle) => {
+			let savedNewsDiv = `
+			<div class="showNews col-md-2">
+			<img class="img-responsive pt-15" src="${savedArticle.urlToImage}">
+			<h5>Headline: ${savedArticle.title}</h5>
+			<h5>Author: ${savedArticle.author}</h5>
+			<p>Description: ${savedArticle.description}</p>
+			<p>Date: ${savedArticle.publishedAt}</p>
+			<a href="${savedArticle.url}" target="_blank">${savedArticle.url}</a>
+			<br>
+			</div>`;
+			mostInteresting.innerHTML += savedNewsDiv;
+			/*document.getElementById("btnDelete").addEventListener("click", function() {
+				//newsMod.saveFavoriteNews();
+			});
+        <button id="btnDelete" class="btn btn-outline-danger" value="Save News">Save News</button>
+        */
+      }
+    }
+  })();
 
-})();
-
-newsMod.getLatestNews();
+  newsMod.getLatestNews();
 //Latest News Reddit
 document.getElementById("latestNews").addEventListener("click", newsMod.getLatestNews);
 //General News
@@ -178,11 +218,7 @@ document.getElementById("gaming").addEventListener("click", newsMod.findSourceBy
 //document.getElementById("techNews").addEventListener("click", newsMod.getTechNews);
 
 //GET POST EventListener
-//document.getElementById("btnSave").addEventListener("click", newsMod.fetchPostArticles);
+document.getElementById("btnSave").addEventListener("click", function(event) {
+				newsMod.saveFavoriteNews(event);
+			});
 
-/*JSON.stringify({
-					title: "Spectre",
-					year: 2015,
-					genres: ["Action", "Thriller", "Mystery"],
-					ratings: [9,9,9,9,9,9]
-					})*/

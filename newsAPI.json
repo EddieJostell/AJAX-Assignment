@@ -1,107 +1,76 @@
 {
-  "movies": [
+  "articles": [
     {
-      "id": 0,
-      "title": "The Lobster",
-      "year": 2015,
-      "genres": [
-        "Drama",
-        "Sci-Fi"
-      ],
-      "ratings": [
-        8,
-        7,
-        8,
-        6,
-        9,
-        9,
-        10
-      ]
+      "author": "Angela Dewan and Lauren Said-Moorhouse, CNN",
+      "title": "London attack: Four killed in British Parliament carnage",
+      "description": "Four people died and at least 40 were injured when an attacker rammed a car into crowds of people before stabbing a police officer in the grounds of the UK Parliament in London.",
+      "url": "http://us.cnn.com/2017/03/22/europe/uk-parliament-firearms-incident/index.html",
+      "urlToImage": "http://i2.cdn.cnn.com/cnnnext/dam/assets/170322141213-parliament-attack-thumb-super-tease.jpg",
+      "publishedAt": "2017-03-22T22:59:02Z",
+      "id": 1
     },
     {
-      "id": 1,
-      "title": "Porco Rosso",
-      "year": 1992,
-      "genres": [
-        "Animation",
-        "Adventure",
-        "Comedy"
-      ],
-      "ratings": [
-        9,
-        10,
-        1,
-        9,
-        10,
-        10,
-        10
-      ]
-    },
-    {
-      "title": "Spectre",
-      "year": 2015,
-      "genres": [
-        "Action",
-        "Thriller",
-        "Mystery"
-      ],
-      "ratings": [
-        9,
-        9,
-        9,
-        9,
-        9,
-        9
-      ],
+      "author": "Derek Lawrence",
+      "title": "Fox Announces Premiere Dates for Andy Cohen, Jamie Foxx Hosted Reality Series",
+      "description": "Fox has revealed premiere dates for its summer schedule, which is full of famous faces and reality series. Beginning May 25, Andy Cohen and Jamie Foxx will air back-to-back. Cohen will host Love Co…",
+      "url": "http://ew.com/tv/2017/03/22/fox-summer-premiere-dates-andy-cohen-jamie-foxx/",
+      "urlToImage": "http://i1.wp.com/ewedit.files.wordpress.com/2017/03/andy-cohen-jamie-foxx.jpg?crop=0px%2C0px%2C1800px%2C1350px&resize=660%2C495&ssl=1",
+      "publishedAt": "2017-03-22T23:36:12Z",
       "id": 2
     },
     {
+      "author": "Football Italia Staff",
+      "title": "Reports: Torino strike Lyanco deal",
+      "description": "Multiple Brazilian sources claim Torino have practically agreed terms for Sao Paulo defender Lyanco worth €6m plus €2-3m bonuses.",
+      "url": "http://www.football-italia.net/node/100072",
+      "urlToImage": "http://www.football-italia.net/sites/default/files/imagecache/main_photo/[type]/[nid]/Lyanco-1702-epa_2.jpg",
+      "publishedAt": "2017-03-22T01:00:00Z",
       "id": 3
     },
     {
+      "author": "",
+      "title": "First dinosaurs may have been omnivores in the north hemisphere",
+      "description": "Largest shake-up of dinosaur family tree in 130 years puts T. rex in a group with herbivores and uproots what we thought we knew about the reptiles",
+      "url": "https://www.newscientist.com/article/2125580-first-dinosaurs-may-have-been-omnivores-in-the-north-hemisphere/",
+      "urlToImage": "https://d1o50x50snmhul.cloudfront.net/wp-content/uploads/2017/03/22180035/rexfeatures_1277943af.jpg",
+      "publishedAt": "2017-03-22T00:00:00Z",
       "id": 4
     },
     {
+      "author": "Khaled \"Tito\" Hamze",
+      "title": "Crunch Report",
+      "description": "Your daily roundup of the biggest TechCrunch stories and startup news.",
+      "url": "https://techcrunch.com/video/crunchreport/",
+      "urlToImage": "https://tctechcrunch2011.files.wordpress.com/2015/03/tccrshowogo.jpg?w=500&h=200&crop=1",
+      "publishedAt": "2017-03-22T03:01:04Z",
       "id": 5
     },
     {
+      "author": "James Dawson",
+      "title": "Holly Willoughby’s Question About Ore Oduba’s Penis On Quiz Show Was Seriously Awkward | LADbible",
+      "description": "Very embarrassing.",
+      "url": "http://www.theladbible.com/now/film-and-tv-holly-willoughbys-asks-pretty-awkward-question-about-ore-odubas-dick-20170322",
+      "urlToImage": "http://20.theladbiblegroup.com/s3/content/808x455/0cc2aed158d34c9a3d8baacc633cab66.png",
+      "publishedAt": "2017-03-22T23:35:25Z",
       "id": 6
     },
     {
+      "author": "Derek Lawrence",
+      "title": "Fox Announces Premiere Dates for Andy Cohen, Jamie Foxx Hosted Reality Series",
+      "description": "Fox has revealed premiere dates for its summer schedule, which is full of famous faces and reality series. Beginning May 25, Andy Cohen and Jamie Foxx will air back-to-back. Cohen will host Love Co…",
+      "url": "http://ew.com/tv/2017/03/22/fox-summer-premiere-dates-andy-cohen-jamie-foxx/",
+      "urlToImage": "http://i1.wp.com/ewedit.files.wordpress.com/2017/03/andy-cohen-jamie-foxx.jpg?crop=0px%2C0px%2C1800px%2C1350px&resize=660%2C495&ssl=1",
+      "publishedAt": "2017-03-22T23:36:12Z",
       "id": 7
     },
     {
+      "author": "MJ Lee, Deirdre Walsh, Phil Mattingly and Lauren Fox, CNN",
+      "title": "Trump, House leaders, conservatives working on health care deal",
+      "description": null,
+      "url": "http://us.cnn.com/2017/03/22/politics/house-health-care-bill/index.html",
+      "urlToImage": "http://i2.cdn.cnn.com/cnnnext/dam/assets/170317121146-trump-ryan-0316-super-tease.jpg",
+      "publishedAt": "2017-03-22T23:18:31Z",
       "id": 8
-    },
-    {
-      "id": 9
-    },
-    {
-      "id": 10
-    },
-    {
-      "id": 11
-    },
-    {
-      "id": 12
-    },
-    {
-      "id": 13
-    },
-    {
-      "id": 14
-    },
-    {
-      "id": 15
-    },
-    {
-      "id": 16
-    },
-    {
-      "id": 17
-    },
-    {
-      "id": 18
     }
   ]
 }
