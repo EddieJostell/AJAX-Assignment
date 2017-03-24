@@ -8,7 +8,8 @@
 body, html {
 	width: 100%;
 	height: auto;
-	background-color: lightgrey;
+	/*background-color: lightgrey;*/
+	background: url(../img/newspaper.jpg) no-repeat repeat center;
 	font-family: 'Open Sans', sans-serif;
 }
 
@@ -17,77 +18,126 @@ h1, h2, h3, h4, h5, h6,
 	font-family: "Raleway";
 }
 
-#news {
-	text-align: center;
+.navbar-inverse .navbar-nav .nav-link {
 	color: white;
 }
 
-.flexAllForms {
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+form a {
+	color: white;
 }
 
-.newsContainer {
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-flex-wrap: wrap;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
-}
-.showNews {
-	height: auto;
-	margin: 0.5rem 5px 35px 0;
-	display: inline-block;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	margin-right: 62px;
-	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+.m-top {
+	margin-top: 56px;
 }
 
-.navbar-inverse .navbar-nav .nav-link {
-    color: white;
+	.newsContainer {
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+	}
+	.showNews {
+		height: auto;
+		margin: 0.5rem 5px 35px 0;
+		display: inline-block;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		margin-right: 62px;
+		box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+	}
+
+	.showNews p  {
+		color: black;
+		font-size: 1rem;
+		overflow-wrap: break-word;
+	}
+
+	.showNews a {
+		overflow-wrap: break-word;
+	}
+	#newsOutput {
+
+	}
+
+	.savedNewsContainer  {
+		background-color: black;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+	}
+
+
+
+	.img-responsive {
+		display: block;
+		height: auto;
+		max-width: 100%;
+	}
+
+	.pt-15 {
+		padding-top: 15px !important;
+	}
+
+footer {
+	background-color: lightgrey;
 }
 
-.showNews p  {
-	color: black;
-	font-size: 1rem;
-	overflow-wrap: break-word;
-}
+ /*.loader,
+        .loader:after {
+            border-radius: 50%;
+            width: 10em;
+            height: 10em;
+        }
+        .loader {            
+            margin: 60px auto;
+            font-size: 10px;
+            position: relative;
+            text-indent: -9999em;
+            border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+            border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+            border-left: 1.1em solid #ffffff;
+            -webkit-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-animation: load8 1.1s infinite linear;
+            animation: load8 1.1s infinite linear;
+        }
+        @-webkit-keyframes load8 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes load8 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        #loadingDiv {
+            position:absolute;;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background-color:#000;
+        }*/
 
-.showNews a {
-	overflow-wrap: break-word;
-}
-#newsOutput {
-
-
-}
-
-.header-flex1 {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
-}
-
-
-
-.savedNewsContainer  {
-	height: auto;
-	background-color: black;
-	border: 1px solid blue;
-}
-
-
-.img-responsive {
-	display: block;
-	height: auto;
-	max-width: 100%;
-}
-
-.pt-15 {
-	padding-top: 15px !important;
-}
+/*#loading {
+    position: absolute; width: 100%; height: 100%; background: url('http://media3.giphy.com/media/12NUbkX6p4xOO4/giphy-downsized.gif') no-repeat center center;
+}*/

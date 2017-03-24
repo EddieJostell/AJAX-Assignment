@@ -18,7 +18,7 @@ const newsMod = (() => {
 						news[i].author = "";
 						news[i].publishedAt = "";
 						let newsDiv = `
-						<div class="showNews card col-lg-2 col-md-4 col-sm-6 col-xs-12">
+						<div class="showNews card col-lg-2 col-md-6 col-sm-6 col-xs-12">
 						<img class="card-img-top img-responsive pt-15" src="${news[i].urlToImage}">
 						<div class="card-block">
 						<h5 class="card-title">Headline: ${news[i].title}</h5>
@@ -26,15 +26,13 @@ const newsMod = (() => {
 						<p class="card-text">Description: ${news[i].description}</p>
 						<p class="card-text">Date: ${news[i].publishedAt}</p>
 						<a class="card-text" href="${news[i].url}" target="_blank">${news[i].url}</a>
-						<br>
-						<button id="btnSave" class="btn btn-outline-danger" value="Save News">Save News</button>
 						</div>
 						</div>`;
 						newsOutput.innerHTML += newsDiv;
 					}
 					else {
 						let newsDiv = `
-						<div class="showNews card col-lg-2 col-md-4 col-sm-6 col-xs-12">
+						<div class="showNews card col-lg-2 col-md-6 col-sm-6 col-xs-12">
 						<img class="card-img-top img-responsive pt-15" src="${news[i].urlToImage}">
 						<div class="card-block">
 						<h5 class="card-title">Headline: ${news[i].title}</h5>
@@ -42,13 +40,10 @@ const newsMod = (() => {
 						<p class="card-text">Description: ${news[i].description}</p>
 						<p class="card-text">Date: ${news[i].publishedAt}</p>
 						<a class="card-text" href="${news[i].url}" target="_blank">${news[i].url}</a>
-						<br>
-						<button id="btnSave" class="btn btn-outline-danger" value="Save News">Save News</button>
 						</div>
 						</div>`;
 						newsOutput.innerHTML += newsDiv;
 					}
-
 				};
 			})
 			.catch(function(error) {
@@ -101,7 +96,7 @@ const newsMod = (() => {
 				//console.log(data);
 				newsOutput.innerHTML = "";
 				let source = data.sources;
-				for (var i = 0; i < source.length; i++) {
+				for (var i = 0; i < source.length + 1; i++) {
 					newsMod.showNewsBySource(source[i]);
 				};
 			})
@@ -110,27 +105,54 @@ const newsMod = (() => {
 			});
 		},
 		showNewsByArticle: (article) =>  {
+			if (article.author === null || article.publishedAt === null) {
+				article.author = "";
+				article.publishedAt = "";
 
-			let newsDiv = `
-			<div class="showNews card col-lg-2 col-md-4 col-sm-6 col-xs-12">
-			<img class="card-img-top img-responsive pt-15" src="${article.urlToImage}">
-			<div class="card-block">
-			<h5 class="card-title">Headline: ${article.title}</h5>
-			<h5 class="card-title">Author: ${article.author}</h5>
-			<p class="card-text">Description: ${article.description}</p>
-			<p class="card-text">Date: ${article.publishedAt}</p>
-			<a class="card-text" href="${article.url}" target="_blank">${article.url}</a>
-			<br>
-			<button id="btnSave" class="btnSave btn btn-outline-danger" value="Save News" data-article="${JSON.stringify(article).replace(/"/g,"'")}">Save News</button>
-			</div>
-			</div>`;
-			newsOutput.innerHTML += newsDiv;
-			let buttons = document.getElementsByClassName("btnSave");
-			for (var i = 0; i < buttons.length; i++) {
-				buttons[i].addEventListener("click", function() {
-					newsMod.saveFavoriteNews(this);
-				});
+				let newsDiv = `
+				<div class="showNews card col-lg-2 col-md-4 col-sm-6 col-xs-12">
+				<img class="card-img-top img-responsive pt-15" src="${article.urlToImage}">
+				<div class="card-block">
+				<h5 class="card-title">Headline: ${article.title}</h5>
+				<h5 class="card-title">Author: ${article.author}</h5>
+				<p class="card-text">Description: ${article.description}</p>
+				<p class="card-text">Date: ${article.publishedAt}</p>
+				<a class="card-text" href="${article.url}" target="_blank">${article.url}</a>
+				<br>
+				<button id="btnSave" class="btnSave btn btn-outline-danger" value="Save News" data-article='${JSON.stringify(article).replace(/'/g,"’")}'>Save News</button>
+				</div>
+				</div>`;
+				newsOutput.innerHTML += newsDiv;
+				let buttons = document.getElementsByClassName("btnSave");
+				for (var i = 0; i < buttons.length; i++) {
+					buttons[i].addEventListener("click", function() {
+						newsMod.saveFavoriteNews(this);
+					});
+				}
 			}
+			else {
+				let newsDiv = `
+				<div class="showNews card col-lg-2 col-md-4 col-sm-6 col-xs-12">
+				<img class="card-img-top img-responsive pt-15" src="${article.urlToImage}">
+				<div class="card-block">
+				<h5 class="card-title">Headline: ${article.title}</h5>
+				<h5 class="card-title">Author: ${article.author}</h5>
+				<p class="card-text">Description: ${article.description}</p>
+				<p class="card-text">Date: ${article.publishedAt}</p>
+				<a class="card-text" href="${article.url}" target="_blank">${article.url}</a>
+				<br>
+				<button id="btnSave" class="btnSave btn btn-outline-danger" value="Save News" data-article='${JSON.stringify(article).replace(/'/g,"’")}'>Save News</button>
+				</div>
+				</div>`;
+				newsOutput.innerHTML += newsDiv;
+				let buttons = document.getElementsByClassName("btnSave");
+				for (var i = 0; i < buttons.length; i++) {
+					buttons[i].addEventListener("click", function() {
+						newsMod.saveFavoriteNews(this);
+					});
+				}
+			}
+			
 		},
 		showNewsBySource: (source) => {
 			let sourceDiv = `
@@ -153,17 +175,19 @@ const newsMod = (() => {
 		saveFavoriteNews: (button) =>  {
 			//Getting  the data-object from the button that we pressed to save the news to the database
 			//and put it into a variable that is fetch POSTED to my "database" (json-server on newsAPI.json). 
-		  
+
 
 			fetch('http://localhost:3000/articles', {
 				method: 'POST', 
 				mode: 'cors',
-				body: JSON.parse(button.dataset.article.replace(/'/g,'"')),
+				body: button.dataset.article,
 				redirect: 'follow',
 				headers: new Headers({
 					'Content-Type': 'application/json'
 				})
-			}).then(function(data) {
+			})
+			.then(function(data) {
+				console.log(button.dataset.article);
 				alert("Article saved in the database");
 			})
 			.catch(function (error) {  
@@ -174,13 +198,11 @@ const newsMod = (() => {
 		getArticlesFromDatabase: () => {
 			fetch('http://localhost:3000/articles') 
 			.then((response) => {
-				return response.json();		 // Transform the data into json
+				return response.json();
 			})
 			.then(function(savedNews) { 
-				console.log(savedNews);
-			// Puts the fetch response into the parameter "data".
-				 mostInteresting.innerHTML = "";
-				 console.log(savedNews.length);
+				 // Puts the fetch response into the parameter "savedNews".   
+				 mostInteresting.innerHTML = ""; 
 				 for (var i = 0; i < savedNews.length; i++) {
 				 	newsMod.showSavedArticlesOnHtml(savedNews[i]);
 				 };
@@ -202,18 +224,13 @@ const newsMod = (() => {
 			</div>
 			</div>`;
 			mostInteresting.innerHTML += savedNewsDiv;
-			/*document.getElementById("btnDelete").addEventListener("click", function() {
-				//newsMod.saveFavoriteNews();
-			});
-        <button id="btnDelete" class="btn btn-outline-danger" value="Save News">Save News</button>
-        */
-      }
-    }
-  })();
+		},
+	}
+})();
+newsMod.getLatestNews();
 
-  newsMod.getLatestNews();
 //Latest News Reddit
-//document.getElementById("latestNews").addEventListener("click", newsMod.getLatestNews);
+document.getElementById("latestNews").addEventListener("click", newsMod.getLatestNews);
 //General News
 document.getElementById("cnn").addEventListener("click", newsMod.findArticleById);
 document.getElementById("bbc-news").addEventListener("click", newsMod.findArticleById);
