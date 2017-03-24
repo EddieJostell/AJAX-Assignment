@@ -10,7 +10,7 @@ const newsMod = (() => {
 			<div class="showNews col-md-4" data-article="${JSON.stringify(article)}">
 			<img class="img-responsive pt-15" src="${article.urlToImage}">
 			<h5>Headline: ${article.title}</h5>
-			<h5>Author: ${article.author}</h5>
+			<h5>Author: ${article.author}</h5>  
 			<p>Description: ${article.description}</p>
 			<p>Date: ${article.publishedAt}</p>
 			<a href="${article.url}" target="_blank">${article.url}</a>
