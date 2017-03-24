@@ -1,24 +1,6 @@
 {
-  "movies": [
-   
+  "articles": [
     {
-      "title": "Gladiator",
-      "year": 2000,
-      "genres": [
-        "Action",
-        "Drama",
-        "Adventure"
-      ],
-      "ratings": [
-        9,
-        9,
-        9,
-        9,
-        9,
-        9,
-        9,
-        9
-      ],
       "id": 1
     }
   ]

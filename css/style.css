@@ -1,28 +1,25 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Raleway");
 * {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
 
-html, body {
+body, html {
 	width: 100%;
+	height: auto;
 	background-color: lightgrey;
+	font-family: 'Open Sans', sans-serif;
 }
 
-h1,h2,h4 {
-	color: white;
-	
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: "Raleway";
 }
 
 #news {
 	text-align: center;
 	color: white;
-}
-
-#newsOutput {
-	width: 100%;
-	height: auto;
-	margin: 0 auto;
 }
 
 .flexAllForms {
@@ -32,44 +29,54 @@ h1,h2,h4 {
 	align-items: center;
 }
 
+.newsContainer {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
 .showNews {
-	width: 500px;
 	height: auto;
-	border: 1px solid white;
-	margin-top: 50px;
-	background-color: white;
+	margin: 0.5rem 5px 35px 0;
+	display: inline-block;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	margin-right: 62px;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-.h2-news {
-	text-align: center;
+.navbar-inverse .navbar-nav .nav-link {
+    color: white;
+}
+
+.showNews p  {
+	color: black;
+	font-size: 1rem;
+	overflow-wrap: break-word;
+}
+
+.showNews a {
+	overflow-wrap: break-word;
+}
+#newsOutput {
+
+
 }
 
 .header-flex1 {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: space-between;
 }
 
-.link-prep {
-	color: white;
-	font-size: 1rem;
-}
 
-.settings {
-	border: 1px solid black;
-}
 
-.newsOutlet {
-	border: 1px solid green;
-}
-
-#newsContainer {
-	border: 1px solid red;
-}
-
-#mostInteresting  {
-	height: 200px;
+.savedNewsContainer  {
+	height: auto;
 	background-color: black;
 	border: 1px solid blue;
 }
@@ -83,18 +90,4 @@ h1,h2,h4 {
 
 .pt-15 {
 	padding-top: 15px !important;
-}
-
-@media (min-width: 768px) {
-    .bootstrap-vertical-nav .collapse {
-        display: block;
-    }
-}
-
-.item-1 {
-	background-color: red;
-}
-
-.item-2 {
-	background-color: blue;
 }
