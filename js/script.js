@@ -203,9 +203,10 @@ const newsMod = (() => {
 			.then(function(savedNews) { 
 				 // Puts the fetch response into the parameter "savedNews".   
 				 mostInteresting.innerHTML = ""; 
-				 for (var i = 0; i < savedNews.length; i++) {
+				 for (var i = 0; i < savedNews.length + 1; i++) {
 				 	newsMod.showSavedArticlesOnHtml(savedNews[i]);
 				 };
+				 console.log(savedNews);
 				})
 			.catch(function(error) {
 				console.log(error);
@@ -225,7 +226,7 @@ const newsMod = (() => {
 			</div>`;
 			mostInteresting.innerHTML += savedNewsDiv;
 		},
-	}
+}
 })();
 newsMod.getLatestNews();
 
