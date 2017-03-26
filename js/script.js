@@ -6,6 +6,7 @@ const newsMod = (() => {
 
 			fetch(url)
 			.then((response) => {
+
 				return response.json(); // Transform the data into json
 			})
 			.then(function(data) {
@@ -45,6 +46,7 @@ const newsMod = (() => {
 						newsOutput.innerHTML += newsDiv;
 					}
 				};
+				newsMod.showNhideMagic();
 			})
 			.catch(function(error) {
 				console.log(error);
@@ -54,15 +56,23 @@ const newsMod = (() => {
 			//The function activates getApiByArticles and sends along the id of the EventListnener that has been activated when you press on the link.
 			//getApiByArticles takes the ID as a parameter and puts it into fetchGetArticles along with the API URL that is used to get information from the News API that I am using.
 			//That way I dont have to make a new function and a new API URL for every news station that I want to show news from.
-			//fetchGetArticles then makes a fetch GET request to the API and you get data back formated in JSON, then I loop through the array of objekts (articles) and send them to
+			//fetchGetArticles then makes a fetch GET request to the API and you get data back formated in JSON, then I loop through the array of objects (articles) and send them to
 			//showNewsByArticle where I use a template literal to display the articles on the HTML.
 
 			//Same procedure for findSourcesByCategory, getApiBySourcesm fetchGetSources and showNewsBySources
 			//But instead of showing articles from different News stations you get different news stations within different categories.
 			findArticleById(){
+				//Hide the div that is gonna show the news articles 
+				//while the data is fetched and show the loading gif.
+				$('#newsOutput').removeClass('visible');
+				$('#loading').show();
 				newsMod.getApiByArticles(this.id);
 			},
 			findSourceByCategory() {
+				//Hide the div that is gonna show the news stations
+				//while the data is fetched and show the loading gif.
+				$('#newsOutput').removeClass('visible');
+				$('#loading').show();
 				newsMod.getApiBySources(this.id);
 			},
 			getApiByArticles: (inputSrc) => {
@@ -81,7 +91,8 @@ const newsMod = (() => {
 				newsOutput.innerHTML = "";
 				for (var i = 0; i < news.length; i++) {
 					newsMod.showNewsByArticle(news[i]);
-				};          
+				}; 
+				newsMod.showNhideMagic();         
 			})
 			.catch(function(error) {
 				console.log(error);
@@ -99,12 +110,17 @@ const newsMod = (() => {
 				for (var i = 0; i < source.length + 1; i++) {
 					newsMod.showNewsBySource(source[i]);
 				};
+				newsMod.showNhideMagic();
 			})
 			.catch(function(error){
 				console.log(error);
 			});
 		},
+		//Function with template literal to show articles on the page.
+		//Information comes from fetchGetArticle.
 		showNewsByArticle: (article) =>  {
+			//Some articles dont have a author or publishing date so instead of it saying null
+			//It wont say anything.
 			if (article.author === null || article.publishedAt === null) {
 				article.author = "";
 				article.publishedAt = "";
@@ -126,7 +142,10 @@ const newsMod = (() => {
 				let buttons = document.getElementsByClassName("btnSave");
 				for (var i = 0; i < buttons.length; i++) {
 					buttons[i].addEventListener("click", function() {
+						$('#mostInteresting').removeClass('visible');
+						$('#loading').show();
 						newsMod.saveFavoriteNews(this);
+						console.log(this);
 					});
 				}
 			}
@@ -145,14 +164,19 @@ const newsMod = (() => {
 				</div>
 				</div>`;
 				newsOutput.innerHTML += newsDiv;
+				//When you press the "Save News" button you save the articles information in a data-object stored in the button itself
+				//The button becomes an array with the article information that you loop through and send 
+				//to the savedFavoriteNews function that makes a get POST to the json-server.
 				let buttons = document.getElementsByClassName("btnSave");
 				for (var i = 0; i < buttons.length; i++) {
 					buttons[i].addEventListener("click", function() {
+						$('#mostInteresting').removeClass('visible');
+						$('#loading').show();
 						newsMod.saveFavoriteNews(this);
+						console.log(this);
 					});
 				}
 			}
-			
 		},
 		showNewsBySource: (source) => {
 			let sourceDiv = `
@@ -169,14 +193,16 @@ const newsMod = (() => {
 			</div>
 			</div>`;
 			newsOutput.innerHTML += sourceDiv;
+			newsMod.showNhideMagic();
 		},
 
 		
 		saveFavoriteNews: (button) =>  {
-			//Getting  the data-object from the button that we pressed to save the news to the database
-			//and put it into a variable that is fetch POSTED to my "database" (json-server on newsAPI.json). 
-
-
+			//Getting  the data-object from the button that we pressed to fetch POST to my "database" (json-server on newsAPI.json). 
+			//fetch POST
+			//Set to allow cross-origin requests
+			//Makes the post then alerts that it has been saved
+			//If something goes wrong the .catch function will say it failed and give a error messag statitng what went wrong.
 			fetch('http://localhost:3000/articles', {
 				method: 'POST', 
 				mode: 'cors',
@@ -188,14 +214,16 @@ const newsMod = (() => {
 			})
 			.then(function(data) {
 				console.log(button.dataset.article);
-				alert("Article saved in the database");
+				alert("Article saved to the database!");
 			})
 			.catch(function (error) {  
-				console.log('Requestet failade', error);  
+				console.log('Request failed', error);  
 			});
 			newsMod.getArticlesFromDatabase();
 		},
 		getArticlesFromDatabase: () => {
+			//fetch GET the saved articles and format them into JSON.
+			//Loop through the array send the info forward to the next function.
 			fetch('http://localhost:3000/articles') 
 			.then((response) => {
 				return response.json();
@@ -203,16 +231,17 @@ const newsMod = (() => {
 			.then(function(savedNews) { 
 				 // Puts the fetch response into the parameter "savedNews".   
 				 mostInteresting.innerHTML = ""; 
-				 for (var i = 0; i < savedNews.length + 1; i++) {
+				 for (var i = 0; i < savedNews.length; i++) {
 				 	newsMod.showSavedArticlesOnHtml(savedNews[i]);
 				 };
-				 console.log(savedNews);
+				 newsMod.showNhideMagic();
 				})
 			.catch(function(error) {
 				console.log(error);
 			});		
 		},
 		showSavedArticlesOnHtml: (savedArticle) => {
+			//Print out the saved articles with the information sent from getArticlesFromDatabase.
 			let savedNewsDiv = `
 			<div class="showNews card col-lg-2 col-md-4 col-sm-6 col-xs-12">
 			<img class="card-img-top img-responsive pt-15" src="${savedArticle.urlToImage}">
@@ -225,11 +254,20 @@ const newsMod = (() => {
 			</div>
 			</div>`;
 			mostInteresting.innerHTML += savedNewsDiv;
+			newsMod.showNhideMagic();
 		},
-}
-})();
-newsMod.getLatestNews();
-
+		showNhideMagic: () => {
+			//Function that controls the loading gif
+			//and the newsOutput div that shows the articles when the page is loaded.
+			$(document).ready(function() {
+				setTimeout(function(){ 
+					$('#loading').fadeOut(250, function() {
+						$('#newsOutput, #mostInteresting').addClass('visible');
+					});
+				}, 3000);
+			});
+		},
+		registerEventHandlers: () => {
 //Latest News Reddit
 document.getElementById("latestNews").addEventListener("click", newsMod.getLatestNews);
 //General News
@@ -271,3 +309,17 @@ document.getElementById("gaming").addEventListener("click", newsMod.findSourceBy
 				newsMod.saveFavoriteNews(event);
 			});
 			*/
+		},
+		  //Self-invoking function that will load the DOM content and activate all the eventListeners.
+		  initialize: (() => {
+		  	document.addEventListener('DOMContentLoaded', () => {
+		  		newsMod.getLatestNews();
+		  		newsMod.showNhideMagic();
+		  		newsMod.registerEventHandlers();
+
+		  	});
+		  })()
+		}
+	})();
+
+

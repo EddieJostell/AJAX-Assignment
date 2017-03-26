@@ -8,11 +8,8 @@
 	<title>AJAX-Assignment</title>
 </head>
 <body>
-<!-- <div id="loading">
-<img id="loading-image" src="http://media3.giphy.com/media/12NUbkX6p4xOO4/giphy-downsized.gif" alt="Loading..." />
-</div>  -->
-<!-- <div class="loader">Loading...</div> -->
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+<div id="loading"></div>
+ <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
 	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -100,10 +97,12 @@
 	</div>
 </nav> <!-- END OF NAVBAR -->
 <main class="container-fluid m-top">
+
 	<div class="row">
 		<section class="newsOutlet col-md-12" >
 			<div class="row">
 				<section class="newsContainer col-md-12" id="newsOutput">
+
 					<!-- News comes here -->
 				</section>
 
@@ -126,21 +125,9 @@
 		</footer>
 	</div> 
 </main> <!-- container-fluid -->
-<script src="https://code.jquery.com/jquery-3.1.1.slim.js" integrity="sha256-5i/mQ300M779N2OVDrl16lbohwXNUdzL/R2aVUXyXWA=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script type="text/javascript" src="js/script.js"></script>
-<!-- <script type="text/javascript">
-	$('body').append('<div style="" id="loadingDiv"><div class="loader">Loading...</div></div>');
-	$(window).on('load', function(){
-  setTimeout(removeLoader, 2000); //wait for page load PLUS two seconds.
-});
-	function removeLoader(){
-		$( "#loadingDiv" ).fadeOut(500, function() {
-      // fadeOut complete. Remove the loading div
-      $( "#loadingDiv" ).remove(); //makes page more lightweight 
-  });  
-	}
-</script> -->
 </body>
 </html>
