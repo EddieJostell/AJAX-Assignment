@@ -1,6 +1,15 @@
+//Module pattern
+//Simple and effective pattern that I use so I feel that
+//I am in control of how I structure my code.
 const newsMod = (() => {
 
 	return {
+		//First function that contains everything for a AJAX call.
+		//API URL that contains the information I want to gather.
+		//fetch GET method that makes a REQUEST to the API through the URL with the specified parameters I have chosen.
+		//fetch GET gets a response back that is formated into JSON that is sent forward in the fetch GET method.
+		//The information is looped through and put on the DOM with a template literal.
+		//If something goes wrong in the fetch GET process it will be caught and a error message will be delivered in the console.
 		getLatestNews: () => {
 			const url = "https://newsapi.org/v1/articles?source=ign&sortBy=latest&apiKey=ba003866cd1849ffb405924244eb308e";
 
@@ -113,7 +122,7 @@ const newsMod = (() => {
 				newsMod.showNhideMagic();
 			})
 			.catch(function(error){
-				console.log(error);
+				console.log('Request failed', error); 
 			});
 		},
 		//Function with template literal to show articles on the page.
@@ -167,6 +176,8 @@ const newsMod = (() => {
 				//When you press the "Save News" button you save the articles information in a data-object stored in the button itself
 				//The button becomes an array with the article information that you loop through and send 
 				//to the savedFavoriteNews function that makes a get POST to the json-server.
+
+				//When you press the button the div that is going to hold the saved news is  removed from sight and the loading gif is triggered.
 				let buttons = document.getElementsByClassName("btnSave");
 				for (var i = 0; i < buttons.length; i++) {
 					buttons[i].addEventListener("click", function() {
@@ -214,7 +225,7 @@ const newsMod = (() => {
 			})
 			.then(function(data) {
 				console.log(button.dataset.article);
-				alert("Article saved to the database!");
+				/*alert("Article saved to the database!");*/
 			})
 			.catch(function (error) {  
 				console.log('Request failed', error);  
@@ -222,14 +233,15 @@ const newsMod = (() => {
 			newsMod.getArticlesFromDatabase();
 		},
 		getArticlesFromDatabase: () => {
-			//fetch GET the saved articles and format them into JSON.
+			//fetch GET the saved articles from the "database" and format them into JSON.
 			//Loop through the array send the info forward to the next function.
 			fetch('http://localhost:3000/articles') 
 			.then((response) => {
 				return response.json();
 			})
 			.then(function(savedNews) { 
-				 // Puts the fetch response into the parameter "savedNews".   
+				 // Puts the fetch response into the parameter "savedNews". 
+				 //Loop through the array of information and   
 				 mostInteresting.innerHTML = ""; 
 				 for (var i = 0; i < savedNews.length; i++) {
 				 	newsMod.showSavedArticlesOnHtml(savedNews[i]);
@@ -237,7 +249,7 @@ const newsMod = (() => {
 				 newsMod.showNhideMagic();
 				})
 			.catch(function(error) {
-				console.log(error);
+				console.log('Request failed', error); 
 			});		
 		},
 		showSavedArticlesOnHtml: (savedArticle) => {
@@ -254,11 +266,12 @@ const newsMod = (() => {
 			</div>
 			</div>`;
 			mostInteresting.innerHTML += savedNewsDiv;
+			//Invoke loading gif
 			newsMod.showNhideMagic();
 		},
 		showNhideMagic: () => {
 			//Function that controls the loading gif
-			//and the newsOutput div that shows the articles when the page is loaded.
+			//and the newsOutput & mostInteresting div that shows the articles when the page is loaded.
 			$(document).ready(function() {
 				setTimeout(function(){ 
 					$('#loading').fadeOut(250, function() {
@@ -267,6 +280,7 @@ const newsMod = (() => {
 				}, 3000);
 			});
 		},
+		//Function to gathered the EventListeners
 		registerEventHandlers: () => {
 //Latest News Reddit
 document.getElementById("latestNews").addEventListener("click", newsMod.getLatestNews);
@@ -302,14 +316,8 @@ document.getElementById("technology").addEventListener("click", newsMod.findSour
 document.getElementById("ign").addEventListener("click", newsMod.findArticleById);
 document.getElementById("polygon").addEventListener("click", newsMod.findArticleById);
 document.getElementById("gaming").addEventListener("click", newsMod.findSourceByCategory);
-//document.getElementById("techNews").addEventListener("click", newsMod.getTechNews);
 
-//GET POST EventListener
-/*document.getElementById("btnSave").addEventListener("click", function(event) {
-				newsMod.saveFavoriteNews(event);
-			});
-			*/
-		},
+},
 		  //Self-invoking function that will load the DOM content and activate all the eventListeners.
 		  initialize: (() => {
 		  	document.addEventListener('DOMContentLoaded', () => {

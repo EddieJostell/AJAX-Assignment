@@ -8,8 +8,10 @@
 body, html {
 	width: 100%;
 	height: auto;
-	/*background-color: lightgrey;*/
-	background: url(../img/newspaper.jpg) no-repeat repeat center;
+	background-color: #C0C0C0;
+	/*background-image: url(../img/newspaper.jpg) ;*/
+	background-position: center center;
+	background-repeat: no-repeat;
 	font-family: 'Open Sans', sans-serif;
 }
 
@@ -66,12 +68,15 @@ form a {
 
 .savedNewsContainer  {
 	background-color: black;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
 	-webkit-flex-wrap: wrap;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
+}
+
+.savedNewsContainer.visible {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
 }
 
 .img-responsive {
@@ -85,14 +90,23 @@ form a {
 }
 
 footer {
-	background-color: lightgrey;
+	border: 0.5px solid white;
+	background-color: black;
+}
+
+footer h5 {
+	color: white;
+}
+
+footer a {
+	color: white;
 }
 
 #loading {
-	position: absolute; 
+	position: absolute;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0,0,0,0.8);
+	background-color: rgba(0,0,0,0.9);
 	background-image: url('http://media3.giphy.com/media/12NUbkX6p4xOO4/giphy-downsized.gif');
 	background-position: center center;
 	background-repeat: no-repeat;
