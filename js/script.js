@@ -24,36 +24,27 @@ const newsMod = (() => {
 				newsOutput.innerHTML = "";
 				for (var i = 0; i < news.length; i++) {
 					//If information is missing dont write out "null" instead.
-					if (news[i].author === null || news[i].publishedAt === null) {
+					if (news[i].author === null) {
 						news[i].author = "";
+					}
+					if (news[i].publishedAt === null) {
 						news[i].publishedAt = "";
-						let newsDiv = `
-						<div class="showNews card col-lg-2 col-md-6 col-sm-6 col-xs-12">
-						<img class="card-img-top img-responsive pt-15" src="${news[i].urlToImage}">
-						<div class="card-block">
-						<h5 class="card-title">Headline: ${news[i].title}</h5>
-						<h5 class="card-title">Author: ${news[i].author}</h5>
-						<p class="card-text">Description: ${news[i].description}</p>
-						<p class="card-text">Date: ${news[i].publishedAt}</p>
-						<a class="card-text" href="${news[i].url}" target="_blank">${news[i].url}</a>
-						</div>
-						</div>`;
-						newsOutput.innerHTML += newsDiv;
 					}
-					else {
-						let newsDiv = `
-						<div class="showNews card col-lg-2 col-md-6 col-sm-6 col-xs-12">
-						<img class="card-img-top img-responsive pt-15" src="${news[i].urlToImage}">
-						<div class="card-block">
-						<h5 class="card-title">Headline: ${news[i].title}</h5>
-						<h5 class="card-title">Author: ${news[i].author}</h5>
-						<p class="card-text">Description: ${news[i].description}</p>
-						<p class="card-text">Date: ${news[i].publishedAt}</p>
-						<a class="card-text" href="${news[i].url}" target="_blank">${news[i].url}</a>
-						</div>
-						</div>`;
-						newsOutput.innerHTML += newsDiv;
-					}
+					let newsDiv = `
+					<div class="col-lg-3 col-md-6 col-sm-12">
+					<div class="showNews card">
+					<img class="card-img-top img-responsive pt-15" src="${news[i].urlToImage}">
+					<div class="card-block">
+					<h5 class="card-title">Headline: ${news[i].title}</h5>
+					<h5 class="card-title">Author: ${news[i].author}</h5>
+					<p class="card-text">Description: ${news[i].description}</p>
+					<p class="card-text">Date: ${news[i].publishedAt}</p>
+					<a class="card-text" href="${news[i].url}" target="_blank">${news[i].url}</a>
+					</div>
+					</div>
+					</div>`;
+					newsOutput.innerHTML += newsDiv;
+					
 				};
 				newsMod.showNhideMagic();
 			})
@@ -130,85 +121,65 @@ const newsMod = (() => {
 		showNewsByArticle: (article) =>  {
 			//Some articles dont have a author or publishing date so instead of it saying null
 			//It wont say anything.
-			if (article.author === null || article.publishedAt === null) {
-				article.author = "";
-				article.publishedAt = "";
-
-				let newsDiv = `
-				<div class="showNews card col-lg-2 col-md-4 col-sm-6 col-xs-12">
-				<img class="card-img-top img-responsive pt-15" src="${article.urlToImage}">
-				<div class="card-block">
-				<h5 class="card-title">Headline: ${article.title}</h5>
-				<h5 class="card-title">Author: ${article.author}</h5>
-				<p class="card-text">Description: ${article.description}</p>
-				<p class="card-text">Date: ${article.publishedAt}</p>
-				<a class="card-text" href="${article.url}" target="_blank">${article.url}</a>
-				<br>
-				<button id="btnSave" class="btnSave btn btn-outline-danger" value="Save News" data-article='${JSON.stringify(article).replace(/'/g,"’")}'>Save News</button>
-				</div>
-				</div>`;
-				newsOutput.innerHTML += newsDiv;
-				let buttons = document.getElementsByClassName("btnSave");
-				for (var i = 0; i < buttons.length; i++) {
-					buttons[i].addEventListener("click", function() {
-						$('#mostInteresting').removeClass('visible');
-						$('#loading').show();
-						newsMod.saveFavoriteNews(this);
-						console.log(this);
-					});
-				}
+			if (article.author === null) {
+				article.author = "";	
+				
 			}
-			else {
-				let newsDiv = `
-				<div class="showNews card col-lg-2 col-md-4 col-sm-6 col-xs-12">
-				<img class="card-img-top img-responsive pt-15" src="${article.urlToImage}">
-				<div class="card-block">
-				<h5 class="card-title">Headline: ${article.title}</h5>
-				<h5 class="card-title">Author: ${article.author}</h5>
-				<p class="card-text">Description: ${article.description}</p>
-				<p class="card-text">Date: ${article.publishedAt}</p>
-				<a class="card-text" href="${article.url}" target="_blank">${article.url}</a>
-				<br>
-				<button id="btnSave" class="btnSave btn btn-outline-danger" value="Save News" data-article='${JSON.stringify(article).replace(/'/g,"’")}'>Save News</button>
-				</div>
-				</div>`;
-				newsOutput.innerHTML += newsDiv;
+			if (article.publishedAt === null) {
+				article.publishedAt = "";
+			}
+			let newsDiv = `
+			<div class="col-lg-3 col-md-6 col-sm-12">
+			<div class="showNews card">
+			<img class="card-img-top img-responsive pt-15" src="${article.urlToImage}">
+			<div class="card-block">
+			<h5 class="card-title">Headline: ${article.title}</h5>
+			<h5 class="card-title">Author: ${article.author}</h5>
+			<p class="card-text">Description: ${article.description}</p>
+			<p class="card-text">Date: ${article.publishedAt}</p>
+			<a class="card-text" href="${article.url}" target="_blank">${article.url}</a>
+			<br>
+			<button id="btnSave" class="btnSave btn btn-outline-danger" value="Save News" data-article='${JSON.stringify(article).replace(/'/g,"’")}'>Save News</button>
+			</div>
+			</div>
+			</div>`;
+			newsOutput.innerHTML += newsDiv;
 				//When you press the "Save News" button you save the articles information in a data-object stored in the button itself
 				//The button becomes an array with the article information that you loop through and send 
 				//to the savedFavoriteNews function that makes a get POST to the json-server.
-
-				//When you press the button the div that is going to hold the saved news is  removed from sight and the loading gif is triggered.
+				//When you press the button the div that is going to hold the saved news is hidden and the loading gif is triggered.
 				let buttons = document.getElementsByClassName("btnSave");
 				for (var i = 0; i < buttons.length; i++) {
 					buttons[i].addEventListener("click", function() {
-						$('#mostInteresting').removeClass('visible');
+						$('#mostInteresting, #newsOutput').removeClass('visible');
 						$('#loading').show();
 						newsMod.saveFavoriteNews(this);
 						console.log(this);
 					});
 				}
-			}
-		},
-		showNewsBySource: (source) => {
-			let sourceDiv = `
-			<div class="showNews card col-lg-2 col-md-4 col-sm-6 col-xs-12">
-			<img class="card-img-top img-responsive pt-15" src="${source.urlsToLogos.medium}">
-			<div class="card-block">
-			<h5 class="card-title">ID: ${source.id}</h5>
-			<h5 class="card-title">Source: ${source.name}</h5>
-			<h5 class="card-title">Category: ${source.category}</h5>
-			<p class="card-text">Description: ${source.description}</p>
-			<p class="card-text">Language: ${source.language}</p>
-			<p class="card-text">Country: ${source.country}</p>
-			<a class="card-text" href="${source.url}" target="_blank">${source.url}</a>
-			</div>
-			</div>`;
-			newsOutput.innerHTML += sourceDiv;
-			newsMod.showNhideMagic();
-		},
+			},
+			showNewsBySource: (source) => {
+				let sourceDiv = `
+				<div class="col-lg-3 col-md-6 col-sm-12">
+				<div class="showNews card">
+				<img class="card-img-top img-responsive pt-15" src="${source.urlsToLogos.medium}">
+				<div class="card-block">
+				<h5 class="card-title">ID: ${source.id}</h5>
+				<h5 class="card-title">Source: ${source.name}</h5>
+				<h5 class="card-title">Category: ${source.category}</h5>
+				<p class="card-text">Description: ${source.description}</p>
+				<p class="card-text">Language: ${source.language}</p>
+				<p class="card-text">Country: ${source.country}</p>
+				<a class="card-text" href="${source.url}" target="_blank">${source.url}</a>
+				</div>
+				</div>
+				</div>`;
+				newsOutput.innerHTML += sourceDiv;
+				newsMod.showNhideMagic();
+			},
 
-		
-		saveFavoriteNews: (button) =>  {
+
+			saveFavoriteNews: (button) =>  {
 			//Getting  the data-object from the button that we pressed to fetch POST to my "database" (json-server on newsAPI.json). 
 			//fetch POST
 			//Set to allow cross-origin requests
@@ -224,13 +195,16 @@ const newsMod = (() => {
 				})
 			})
 			.then(function(data) {
-				console.log(button.dataset.article);
-				/*alert("Article saved to the database!");*/
-			})
+				/*console.log(button.dataset.article);*/
+
+	       //Call on the function that is going to do the fetch GET from the server to show the articles on the webpage.
+	       //invoked here in the .then callback function to make sure that you dont try to fetch GET something that hasnt been fetch POSTED
+	       //to the database yet.		
+	       newsMod.getArticlesFromDatabase();
+	     })
 			.catch(function (error) {  
 				console.log('Request failed', error);  
 			});
-			newsMod.getArticlesFromDatabase();
 		},
 		getArticlesFromDatabase: () => {
 			//fetch GET the saved articles from the "database" and format them into JSON.
@@ -241,7 +215,7 @@ const newsMod = (() => {
 			})
 			.then(function(savedNews) { 
 				 // Puts the fetch response into the parameter "savedNews". 
-				 //Loop through the array of information and   
+				 //Loop through the array of information and send it to the function that show it on the DOM. 
 				 mostInteresting.innerHTML = ""; 
 				 for (var i = 0; i < savedNews.length; i++) {
 				 	newsMod.showSavedArticlesOnHtml(savedNews[i]);
@@ -253,9 +227,11 @@ const newsMod = (() => {
 			});		
 		},
 		showSavedArticlesOnHtml: (savedArticle) => {
+			console.log(savedArticle);
 			//Print out the saved articles with the information sent from getArticlesFromDatabase.
 			let savedNewsDiv = `
-			<div class="showNews card col-lg-2 col-md-4 col-sm-6 col-xs-12">
+			<div class="col-lg-3 col-md-6 col-sm-12">
+			<div class="showNews card">
 			<img class="card-img-top img-responsive pt-15" src="${savedArticle.urlToImage}">
 			<div class="card-block">
 			<h5 class="card-title">Headline: ${savedArticle.title}</h5>
@@ -264,6 +240,7 @@ const newsMod = (() => {
 			<p class="card-text">Date: ${savedArticle.publishedAt}</p>
 			<a class="card-text" href="${savedArticle.url}" target="_blank">${savedArticle.url}</a>
 			</div>
+			</div>
 			</div>`;
 			mostInteresting.innerHTML += savedNewsDiv;
 			//Invoke loading gif
@@ -271,13 +248,14 @@ const newsMod = (() => {
 		},
 		showNhideMagic: () => {
 			//Function that controls the loading gif
+			//setTimeout for 2 seconds then the divs with the news are shown.
 			//and the newsOutput & mostInteresting div that shows the articles when the page is loaded.
 			$(document).ready(function() {
 				setTimeout(function(){ 
 					$('#loading').fadeOut(250, function() {
 						$('#newsOutput, #mostInteresting').addClass('visible');
 					});
-				}, 3000);
+				}, 2000);
 			});
 		},
 		//Function to gathered the EventListeners
@@ -293,7 +271,7 @@ document.getElementById("the-wall-street-journal").addEventListener("click", new
 document.getElementById("financial-times").addEventListener("click", newsMod.findArticleById);
 document.getElementById("business").addEventListener("click", newsMod.findSourceByCategory);
 //Sports News
-document.getElementById("sky-sports-news").addEventListener("click", newsMod.findArticleById);
+document.getElementById("espn").addEventListener("click", newsMod.findArticleById);
 document.getElementById("football-italia").addEventListener("click", newsMod.findArticleById);
 document.getElementById("sport").addEventListener("click", newsMod.findSourceByCategory);
 //Music News
@@ -323,7 +301,7 @@ document.getElementById("gaming").addEventListener("click", newsMod.findSourceBy
 		  	document.addEventListener('DOMContentLoaded', () => {
 		  		newsMod.getLatestNews();
 		  		newsMod.showNhideMagic();
-		  		newsMod.registerEventHandlers();
+		  		newsMod.registerEventHandlers();	
 
 		  	});
 		  })()

@@ -13,7 +13,7 @@ Implementation and usage of Open API's
 
 ## API(s)
 * https://www.newsAPI.org
-API that gathers APIs from several news stations.
+News API is a simple and easy-to-use API that returns JSON metadata for the headlines currently published on a range of news sources and blogs (70 and counting so far).
 
 
 ## Technologies
@@ -24,3 +24,7 @@ API that gathers APIs from several news stations.
 * JavaScript
 
 ## Work process
+Think tank to come up with an idea for the assignment.
+Idea about a newspage with some functionality started to take form.
+Scouted for a API that would work and started to test fetching data from the API.
+Implemented bootstrap to the project
