@@ -11,7 +11,7 @@ const newsMod = (() => {
 		//The information is looped through and put on the DOM with a template literal.
 		//If something goes wrong in the fetch GET process it will be caught and a error message will be delivered in the console.
 		getLatestNews: () => {
-			const url = "https://newsapi.org/v1/articles?source=engadget&sortBy=latest&apiKey=ba003866cd1849ffb405924244eb308e";
+			/*const url = "https://newsapi.org/v1/articles?source=engadget&sortBy=latest&apiKey=ba003866cd1849ffb405924244eb308e";
 
 			fetch(url)
 			.then((response) => {
@@ -48,7 +48,19 @@ const newsMod = (() => {
 			})
 			.catch(function(error) {
 				console.log(error);
-			});
+			});*/
+			let newsDiv = `
+					<div class="col-lg-8 col-lg-2 col-md-10 col-sm-12">
+					<div class="showNews card">
+					<img class="card-img-top img-responsive pt-15" src="img/news.jpg">
+					<div class="card-block">
+					<h2 class="card-title">Welcome to my News Hub!</h2>
+					<h3 class="card-text">Here you can find news articles from some of the largest news outlests in the world. 
+					If you want to read even more news there are several links to other news outlests aswell, Enjoy!</h3>
+					</div>
+					</div>
+					</div>`;
+					newsOutput.innerHTML += newsDiv;	
 		},
 			//FindArticleById is a function that is called when pressing on a link to a specific news station in the navbar on the DOM. (BBC for example).
 			//The function activates getApiByArticles and sends along the id of the EventListnener that has been activated when you press on the link.
@@ -327,7 +339,7 @@ document.getElementById("gaming").addEventListener("click", newsMod.findSourceBy
 		  initialize: (() => {
 		  	document.addEventListener('DOMContentLoaded', () => {
 		  		newsMod.getLatestNews();
-		  		newsMod.showNhideMagic();
+		  		 newsMod.showNhideMagic();
 		  		newsMod.registerEventHandlers();	
 
 		  	});
