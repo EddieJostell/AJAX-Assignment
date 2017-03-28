@@ -9,7 +9,7 @@ var port = process.env.PORT || 3000;
 server.use(middlewares);
 
 server.get('/delete', (req, res) => {
-  let data = JSON.stringify({ "articles":[] });
+  var data = JSON.stringify({ "articles":[] });
   fs.writeFile('./newsAPI.json', data, 'utf-8', (error)=>{
     if(error) res.send(error)
     res.send('Success!');
