@@ -7,7 +7,7 @@ Implementation and usage of Open API's
 ### Javascript 2
 ### Frontend Development
 
-[Eddie`s News Hub](https://eddiejostell.github.io/news/index.html "Eddie´s News Hub")
+## ITS ALIVE!! [Eddie`s News Hub](https://eddiejostell.github.io/projects/news/index.html "Eddie´s News Hub")
 
 > 
 * My news hub.
