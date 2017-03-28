@@ -138,7 +138,7 @@ const newsMod = (() => {
 			<p class="card-text">Date: ${article.publishedAt}</p>
 			<a class="card-text" href="${article.url}" target="_blank">${article.url}</a>
 			<br>
-			<button id="btnSave" class="btnSave btn btn-outline-danger" value="Save News" data-article='${JSON.stringify(article).replace(/'/g,"’")}'>Save News</button>
+			<button id="btnSave" class="btnSave btn btn-success" value="Save News" data-article='${JSON.stringify(article).replace(/'/g,"’")}'>Save News</button>
 			</div>
 			</div>
 			</div>`;
@@ -181,7 +181,7 @@ const newsMod = (() => {
 			//Set to allow cross-origin requests
 			//Makes the post then alerts that it has been saved
 			//If something goes wrong the .catch function will say it failed and give a error messag statitng what went wrong.
-			fetch('https://project-news.herokuapp.com/articles', {
+			fetch('http://localhost:3000/articles', {
 				method: 'POST', 
 				mode: 'cors',
 				body: button.dataset.article,
@@ -241,6 +241,38 @@ const newsMod = (() => {
 			//Invoke loading gif
 			newsMod.showNhideMagic();
 		},
+		/*
+
+			<br>
+			<button id="btnDelete" class="btnDelete btn btn-outline-danger" value="Delete News" data-article='${JSON.stringify(savedArticle).replace(/'/g,"’")}'>Delete News</button>
+
+
+          		let delButtons = document.getElementsByClassName("btnDelete");
+			for (var i = 0; i < delButtons.length; i++) {
+				delButtons[i].addEventListener("click", function() {
+					$('#mostInteresting, #newsOutput').removeClass('visible');
+					$('#loading').show();
+					newsMod.deleteArticlesFromHTML(this);
+					console.log(this);
+				});
+			}
+
+		deleteArticlesFromHTML: (del) => {
+			console.log(del.id);
+			fetch(`http://localhost:3000/articles/${del.id.dataset.savedArticles.id}`, {
+				method: 'DELETE', 
+				mode: 'cors', 
+				redirect: 'follow',
+				headers: new Headers({
+					'Content-Type': 'text/plain'
+				})
+			}).then(function(data) {
+				console.log("Articles DELETED");
+				newsMod.showSavedArticlesOnHtml();
+				newsMod.showNhideMagic();
+			})
+             
+		},*/
 		showNhideMagic: () => {
 			//Function that controls the loading gif
 			//setTimeout for 2 seconds then the divs with the news are shown.
