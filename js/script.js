@@ -11,7 +11,7 @@ const newsMod = (() => {
 		//The information is looped through and put on the DOM with a template literal.
 		//If something goes wrong in the fetch GET process it will be caught and a error message will be delivered in the console.
 		getLatestNews: () => {
-			const url = "https://newsapi.org/v1/articles?source=ign&sortBy=latest&apiKey=ba003866cd1849ffb405924244eb308e";
+			const url = "https://newsapi.org/v1/articles?source=engadget&sortBy=latest&apiKey=ba003866cd1849ffb405924244eb308e";
 
 			fetch(url)
 			.then((response) => {
@@ -154,7 +154,6 @@ const newsMod = (() => {
 						$('#mostInteresting, #newsOutput').removeClass('visible');
 						$('#loading').show();
 						newsMod.saveFavoriteNews(this);
-						console.log(this);
 					});
 				}
 			},
@@ -199,9 +198,9 @@ const newsMod = (() => {
 
 	       //Call on the function that is going to do the fetch GET from the server to show the articles on the webpage.
 	       //invoked here in the .then callback function to make sure that you dont try to fetch GET something that hasnt been fetch POSTED
-	       //to the database yet.		
+	       //to the database yet since its done asynchronously.		
 	       newsMod.getArticlesFromDatabase();
-	     })
+	   })
 			.catch(function (error) {  
 				console.log('Request failed', error);  
 			});
@@ -227,7 +226,6 @@ const newsMod = (() => {
 			});		
 		},
 		showSavedArticlesOnHtml: (savedArticle) => {
-			console.log(savedArticle);
 			//Print out the saved articles with the information sent from getArticlesFromDatabase.
 			let savedNewsDiv = `
 			<div class="col-lg-3 col-md-6 col-sm-12">

@@ -1,0 +1,30 @@
+@mixin ALL-STAR {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+@mixin fancyBG() {
+	background: #E8CBC0; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to top, #E8CBC0 , #636FA4); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to top, #E8CBC0 , #636FA4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+@mixin pureWhite() {
+	color: white;
+}
+
+@mixin img-responsive() {
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
+
+@mixin threeway-padding() {
+	padding-top: 15px !important;
+	padding-right: 15px !important;
+	padding-left: 15px !important;
+}
+

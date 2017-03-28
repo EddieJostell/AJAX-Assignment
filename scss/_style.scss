@@ -1,18 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans|Raleway");
+@import "mixins";
 * {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+	@include ALL-STAR;
 }
 
 body, html {
 	width: 100%;
 	height: auto;
-	background: #E8CBC0; /* fallback for old browsers */
-	background: -webkit-linear-gradient(to top, #E8CBC0 , #636FA4); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to top, #E8CBC0 , #636FA4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-	background-position: center center;
-	background-repeat: no-repeat;
+	@include fancyBG;
 	font-family: 'Open Sans', sans-serif;
 }
 
@@ -22,29 +17,27 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .navbar-inverse .navbar-nav .nav-link {
-	color: white;
+	@include pureWhite;
 }
 
 form a {
-	color: white;
+	@include pureWhite;
 }
 
 .m-top {
 	margin-top: 56px;
 }
 
-.newsContainer {
+.newsContainer.visible {
 	display:none;
 	-webkit-flex-wrap: wrap;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 	width: 100%;
-}
-
-.newsContainer.visible {
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
+	
 }
 
 .showNews {
@@ -54,18 +47,16 @@ form a {
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
-	
 	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
 
-.showNews p  {
-	color: black;
-	font-size: 1rem;
-	overflow-wrap: break-word;
-}
-
-.showNews a {
-	overflow-wrap: break-word;
+	p {
+		color: black;
+		font-size: 1rem;
+		overflow-wrap: break-word;
+	}
+	a {
+		overflow-wrap: break-word;
+	}
 }
 
 .savedNewsContainer  {
@@ -73,28 +64,23 @@ form a {
 }
 
 .img-responsive {
-	display: block;
-	height: auto;
-	max-width: 100%;
+	@include img-responsive;
 }
 
 .pt-15 {
-	padding-top: 15px !important;
-	padding-right: 15px !important;
-	padding-left: 15px !important;
+	@include threeway-padding;
 }
 
 footer {
 	border: 0.5px solid white;
 	background-color: black;
-}
 
-footer h5 {
-	color: white;
-}
-
-footer a {
-	color: white;
+	h5 {
+		@include pureWhite;
+	}
+	a {
+		@include pureWhite;
+	}
 }
 
 #loading {
