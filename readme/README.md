@@ -14,7 +14,7 @@ insert Link
 *A news page that will implement and show news from one or several API(s).
 *You will be able to find news from different news stations within different categories and save news to your own list of most interesting news.
 > 
-
+[Eddie`s News Hub](https://eddiejostell.github.io/AJAX-Assignment "Eddie´s News Hub")
 >
 ## Technologies
 * Bootstrap 4
@@ -43,7 +43,6 @@ Created my own API from a json-server to store saved news and in turn show them 
 >
 ## TODO-List
 ### Things that I wanted to do but didnt had the time to do.
-* Be able to delete/remove saved articles from the Most Interesting list.
 * Implement more news APis to show more news and news from categories that wasnt available from this one.
 * Be able to search for news with a category or a news station as keyword through a input field.
 >

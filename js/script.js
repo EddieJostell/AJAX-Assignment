@@ -49,18 +49,19 @@ const newsMod = (() => {
 			.catch(function(error) {
 				console.log(error);
 			});*/
+			newsOutput.innerHTML = "";
 			let newsDiv = `
-					<div class="col-lg-8 col-lg-2 col-md-10 col-sm-12">
-					<div class="showNews card">
-					<img class="card-img-top img-responsive pt-15" src="img/news.jpg">
-					<div class="card-block">
-					<h2 class="card-title">Welcome to my News Hub!</h2>
-					<h3 class="card-text">Here you can find news articles from some of the largest news outlests in the world. 
-					If you want to read even more news there are several links to other news outlests aswell, Enjoy!</h3>
-					</div>
-					</div>
-					</div>`;
-					newsOutput.innerHTML += newsDiv;	
+			<div class="col-lg-6 m-auto col-md-10 col-sm-12">
+			<div class="showNews card">
+			<img class="card-img-top img-responsive pt-15" src="img/news.jpg">
+			<div class="card-block">
+			<h2 class="card-title">Welcome to my News Hub!</h2>
+			<h3 class="card-text">Here you can find news articles from some of the largest news outlests in the world.</h3> 
+			<h3>If you want to read even more news there are several links to other news outlests aswell, Enjoy!</h3>
+			</div>
+			</div>
+			</div>`;
+			newsOutput.innerHTML += newsDiv;	
 		},
 			//FindArticleById is a function that is called when pressing on a link to a specific news station in the navbar on the DOM. (BBC for example).
 			//The function activates getApiByArticles and sends along the id of the EventListnener that has been activated when you press on the link.
@@ -209,7 +210,7 @@ const newsMod = (() => {
 	       //invoked here in the .then callback function to make sure that you dont try to fetch GET something that hasnt been fetch POSTED
 	       //to the database yet since its done asynchronously.		
 	       newsMod.getArticlesFromDatabase();
-	   })
+	     })
 			.catch(function (error) {  
 				console.log('Request failed', error);  
 			});
@@ -239,6 +240,7 @@ const newsMod = (() => {
 			let savedNewsDiv = `
 			<div class="col-lg-3 col-md-6 col-sm-12">
 			<div class="showNews card">
+			<h4>Saved in the database!</h4>
 			<img class="card-img-top img-responsive pt-15" src="${savedArticle.urlToImage}">
 			<div class="card-block">
 			<h5 class="card-title">Headline: ${savedArticle.title}</h5>
@@ -246,32 +248,27 @@ const newsMod = (() => {
 			<p class="card-text">Description: ${savedArticle.description}</p>
 			<p class="card-text">Date: ${savedArticle.publishedAt}</p>
 			<a class="card-text" href="${savedArticle.url}" target="_blank">${savedArticle.url}</a>
+			<br>
+			<button id="btnDelete" class="btnDelete btn btn-outline-danger" value="Delete News" data-articleid='${savedArticle.id}'>Delete News</button>
 			</div>
 			</div>
 			</div>`;
 			mostInteresting.innerHTML += savedNewsDiv;
-			//Invoke loading gif
-			newsMod.showNhideMagic();
-		},
-		/*
 
-			<br>
-			<button id="btnDelete" class="btnDelete btn btn-outline-danger" value="Delete News" data-article='${JSON.stringify(savedArticle).replace(/'/g,"’")}'>Delete News</button>
-
-
-          		let delButtons = document.getElementsByClassName("btnDelete");
+			let delButtons = document.getElementsByClassName("btnDelete");
 			for (var i = 0; i < delButtons.length; i++) {
 				delButtons[i].addEventListener("click", function() {
 					$('#mostInteresting, #newsOutput').removeClass('visible');
 					$('#loading').show();
-					newsMod.deleteArticlesFromHTML(this);
-					console.log(this);
+					newsMod.deleteArticlesFromHTML(this.dataset.articleid);
 				});
 			}
-
-		deleteArticlesFromHTML: (del) => {
-			console.log(del.id);
-			fetch(`http://localhost:3000/articles/${del.id.dataset.savedArticles.id}`, {
+			//Invoke loading gif
+			newsMod.showNhideMagic();
+		},
+		deleteArticlesFromHTML: (articleId) => {
+			console.log(articleId);
+			fetch(`http://localhost:3000/articles/${articleId}`, {
 				method: 'DELETE', 
 				mode: 'cors', 
 				redirect: 'follow',
@@ -279,12 +276,15 @@ const newsMod = (() => {
 					'Content-Type': 'text/plain'
 				})
 			}).then(function(data) {
-				console.log("Articles DELETED");
-				newsMod.showSavedArticlesOnHtml();
+				console.log("Article DELETED");
+				newsMod.getArticlesFromDatabase();
 				newsMod.showNhideMagic();
 			})
+			.catch(function(error) {
+				console.log(error);
+			})
              
-		},*/
+		},
 		showNhideMagic: () => {
 			//Function that controls the loading gif
 			//setTimeout for 2 seconds then the divs with the news are shown.
@@ -339,8 +339,9 @@ document.getElementById("gaming").addEventListener("click", newsMod.findSourceBy
 		  initialize: (() => {
 		  	document.addEventListener('DOMContentLoaded', () => {
 		  		newsMod.getLatestNews();
-		  		 newsMod.showNhideMagic();
-		  		newsMod.registerEventHandlers();	
+		  		newsMod.showNhideMagic();
+		  		newsMod.registerEventHandlers();
+		  		newsMod.getArticlesFromDatabase();	
 
 		  	});
 		  })()
