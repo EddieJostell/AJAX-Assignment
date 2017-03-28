@@ -15,7 +15,6 @@ const newsMod = (() => {
 
 			fetch(url)
 			.then((response) => {
-
 				return response.json(); // Transform the data into json
 			})
 			.then(function(data) {
@@ -43,8 +42,7 @@ const newsMod = (() => {
 					</div>
 					</div>
 					</div>`;
-					newsOutput.innerHTML += newsDiv;
-					
+					newsOutput.innerHTML += newsDiv;		
 				};
 				newsMod.showNhideMagic();
 			})
@@ -61,12 +59,14 @@ const newsMod = (() => {
 
 			//Same procedure for findSourcesByCategory, getApiBySourcesm fetchGetSources and showNewsBySources
 			//But instead of showing articles from different News stations you get different news stations within different categories.
-			findArticleById(){
+			//The functions are written this way so that "this" is not bound to the function.
+			findArticleById (){
 				//Hide the div that is gonna show the news articles 
 				//while the data is fetched and show the loading gif.
 				$('#newsOutput').removeClass('visible');
 				$('#loading').show();
 				newsMod.getApiByArticles(this.id);
+				console.log(this.id);
 			},
 			findSourceByCategory() {
 				//Hide the div that is gonna show the news stations
@@ -107,7 +107,7 @@ const newsMod = (() => {
 				//console.log(data);
 				newsOutput.innerHTML = "";
 				let source = data.sources;
-				for (var i = 0; i < source.length + 1; i++) {
+				for (var i = 0; i < source.length; i++) {
 					newsMod.showNewsBySource(source[i]);
 				};
 				newsMod.showNhideMagic();
@@ -122,8 +122,7 @@ const newsMod = (() => {
 			//Some articles dont have a author or publishing date so instead of it saying null
 			//It wont say anything.
 			if (article.author === null) {
-				article.author = "";	
-				
+				article.author = "";		
 			}
 			if (article.publishedAt === null) {
 				article.publishedAt = "";
@@ -176,15 +175,13 @@ const newsMod = (() => {
 				newsOutput.innerHTML += sourceDiv;
 				newsMod.showNhideMagic();
 			},
-
-
 			saveFavoriteNews: (button) =>  {
 			//Getting  the data-object from the button that we pressed to fetch POST to my "database" (json-server on newsAPI.json). 
 			//fetch POST
 			//Set to allow cross-origin requests
 			//Makes the post then alerts that it has been saved
 			//If something goes wrong the .catch function will say it failed and give a error messag statitng what went wrong.
-			fetch('http://localhost:3000/articles', {
+			fetch('https://project-news.herokuapp.com/articles', {
 				method: 'POST', 
 				mode: 'cors',
 				body: button.dataset.article,
@@ -256,7 +253,7 @@ const newsMod = (() => {
 				}, 2000);
 			});
 		},
-		//Function to gathered the EventListeners
+		//Function to gather the EventListeners
 		registerEventHandlers: () => {
 //Latest News Reddit
 document.getElementById("latestNews").addEventListener("click", newsMod.getLatestNews);

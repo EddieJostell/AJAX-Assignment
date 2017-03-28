@@ -2,20 +2,18 @@
 Implementation and usage of Open API's
 
 
+
 ### Eddie Jostell
 ### Javascript 2
 ### Frontend Development
 
+insert Link 
+
 > 
-*News page that will implement and show news from one or several API(s).
+* My news hub.
+*A news page that will implement and show news from one or several API(s).
 *You will be able to find news from different news stations within different categories and save news to your own list of most interesting news.
 > 
-
->
-## API(s)
-[newsAPI.org](https://www.newsAPI.org "newsAPI Homepage")
-* News API is a simple and easy-to-use API that returns JSON metadata for the headlines currently published on a range of news sources and blogs (70 and counting so far).
->
 
 >
 ## Technologies
@@ -24,6 +22,12 @@ Implementation and usage of Open API's
 * jquery
 * HTML/SCSS/CSS
 * JavaScript
+>
+
+>
+## API(s)
+[newsAPI.org](https://www.newsAPI.org "newsAPI Homepage")
+* News API is a simple and easy-to-use API that returns JSON metadata for the headlines currently published on a range of news sources and blogs (70 and counting so far).
 >
 
 >
