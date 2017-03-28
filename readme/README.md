@@ -7,14 +7,14 @@ Implementation and usage of Open API's
 ### Javascript 2
 ### Frontend Development
 
-insert Link 
+[Eddie`s News Hub](https://eddiejostell.github.io/news/index.html "Eddie´s News Hub")
 
 > 
 * My news hub.
 *A news page that will implement and show news from one or several API(s).
 *You will be able to find news from different news stations within different categories and save news to your own list of most interesting news.
 > 
-[Eddie`s News Hub](https://eddiejostell.github.io/AJAX-Assignment "Eddie´s News Hub")
+
 >
 ## Technologies
 * Bootstrap 4
