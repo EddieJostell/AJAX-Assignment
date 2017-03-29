@@ -254,6 +254,7 @@ const newsMod = (() => {
 			//Function that controls the loading gif and how the navbar collapse in mobile/ipad view.
 			//setTimeout for 2 seconds then gif fades out and the divs with the news are shown.
 			$(document).ready(function() {
+				//http://stackoverflow.com/questions/21203111/bootstrap-3-collapsed-menu-doesnt-close-on-click
 				$(".navbar-nav li a").click(function(event) {
 					if (!$(this).parent().hasClass('dropdown'))
 						$(".navbar-collapse").collapse('hide');
