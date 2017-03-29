@@ -172,7 +172,7 @@ const newsMod = (() => {
 	       //invoked here in the .then callback function to make sure that you dont try to fetch GET something that hasnt been fetch POSTED
 	       //to the database yet since its done asynchronously.		
 	       newsMod.getArticlesFromDatabase();
-	   })
+	     })
 			.catch(function (error) {  
 				console.log('Request failed', error);  
 			});
@@ -221,14 +221,14 @@ const newsMod = (() => {
              //On click deleteArticlesFromHTML is invoked with "this.dataset.articleid" = the saved ID from the article object.
              //deleteArticlesFromHTML in turn invoke a fetch DELETE method that has the chosen articles ID put into the fetch URL.
              //The article is deleted from the database and the HTML is updated.
-			let delButtons = document.getElementsByClassName("btnDelete");
-			for (var i = 0; i < delButtons.length; i++) {
-				delButtons[i].addEventListener("click", function() {
-					$('#mostInteresting, #newsOutput').removeClass('visible');
-					$('#loading').show();
-					newsMod.deleteArticlesFromHTML(this.dataset.articleid);
-				});
-			}
+             let delButtons = document.getElementsByClassName("btnDelete");
+             for (var i = 0; i < delButtons.length; i++) {
+             	delButtons[i].addEventListener("click", function() {
+             		$('#mostInteresting, #newsOutput').removeClass('visible');
+             		$('#loading').show();
+             		newsMod.deleteArticlesFromHTML(this.dataset.articleid);
+             	});
+             }
 			//Invoke loading gif
 			newsMod.showNhideMagic();
 		},
