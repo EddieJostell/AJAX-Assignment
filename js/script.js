@@ -18,8 +18,8 @@ const newsMod = (() => {
 			<img class="card-img-top img-responsive pt-15" src="img/news.jpg">
 			<div class="card-block">
 			<h2 class="card-title">Welcome to my News Hub!</h2>
-			<h3 class="card-text">Here you can find news articles from some of the largest news outlests in the world.</h3> 
-			<h3 class="card-text">If you want to save news to read at a later time just press the button "Save News"</h3>
+			<h3 class="card-text">Here you can find news articles from some of the largest news outlets in the world.</h3> 
+			<h3 class="card-text">If you want to save news to read at a later time just press the button "Save News" and it will be available at the bottom of the page.</h3>
 			<h3>If you want to read even more news there are several categorial links to other news outlests aswell, Enjoy!</h3>
 			</div>
 			</div>
