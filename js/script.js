@@ -11,44 +11,6 @@ const newsMod = (() => {
 		//The information is looped through and put on the DOM with a template literal.
 		//If something goes wrong in the fetch GET process it will be caught and a error message will be delivered in the console.
 		getLatestNews: () => {
-			/*const url = "https://newsapi.org/v1/articles?source=engadget&sortBy=latest&apiKey=ba003866cd1849ffb405924244eb308e";
-
-			fetch(url)
-			.then((response) => {
-				return response.json(); // Transform the data into json
-			})
-			.then(function(data) {
-				//console.log(data);
-				let news = data.articles;
-				newsOutput.innerHTML = "";
-				for (var i = 0; i < news.length; i++) {
-					//If information is missing dont write out "null" instead.
-					if (news[i].author === null) {
-						news[i].author = "";
-					}
-					if (news[i].publishedAt === null) {
-						news[i].publishedAt = "";
-					}
-					let newsDiv = `
-					<div class="col-lg-3 col-md-6 col-sm-12">
-					<div class="showNews card">
-					<img class="card-img-top img-responsive pt-15" src="${news[i].urlToImage}">
-					<div class="card-block">
-					<h5 class="card-title">Headline: ${news[i].title}</h5>
-					<h5 class="card-title">Author: ${news[i].author}</h5>
-					<p class="card-text">Description: ${news[i].description}</p>
-					<p class="card-text">Date: ${news[i].publishedAt}</p>
-					<a class="card-text" href="${news[i].url}" target="_blank">${news[i].url}</a>
-					</div>
-					</div>
-					</div>`;
-					newsOutput.innerHTML += newsDiv;		
-				};
-				newsMod.showNhideMagic();
-			})
-			.catch(function(error) {
-				console.log(error);
-			});*/
 			newsOutput.innerHTML = "";
 			let newsDiv = `
 			<div class="col-lg-6 m-auto col-md-10 col-sm-12">
@@ -57,7 +19,8 @@ const newsMod = (() => {
 			<div class="card-block">
 			<h2 class="card-title">Welcome to my News Hub!</h2>
 			<h3 class="card-text">Here you can find news articles from some of the largest news outlests in the world.</h3> 
-			<h3>If you want to read even more news there are several links to other news outlests aswell, Enjoy!</h3>
+			<h3 class="card-text">If you want to save news </h3>
+			<h3>If you want to read even more news there are several categorial links to other news outlests aswell, Enjoy!</h3>
 			</div>
 			</div>
 			</div>`;
@@ -73,13 +36,12 @@ const newsMod = (() => {
 			//Same procedure for findSourcesByCategory, getApiBySourcesm fetchGetSources and showNewsBySources
 			//But instead of showing articles from different News stations you get different news stations within different categories.
 			//The functions are written this way so that "this" is not bound to the function.
-			findArticleById (){
+			findArticleById() {
 				//Hide the div that is gonna show the news articles 
 				//while the data is fetched and show the loading gif.
 				$('#newsOutput').removeClass('visible');
 				$('#loading').show();
 				newsMod.getApiByArticles(this.id);
-				console.log(this.id);
 			},
 			findSourceByCategory() {
 				//Hide the div that is gonna show the news stations
@@ -100,6 +62,7 @@ const newsMod = (() => {
 				return response.json();		 // Transform the data into json
 			})
 			.then(function(data) { // Puts the fetch response into the parameter "data".
+				//The fetch is done asynchronous so while the information is looped through the function activating the loading indicator is running aswell.
 				let news = data.articles;
 				newsOutput.innerHTML = "";
 				for (var i = 0; i < news.length; i++) {
@@ -117,7 +80,6 @@ const newsMod = (() => {
 				return response.json(); // Transform the data into json
 			})
 			.then(function(data) {
-				//console.log(data);
 				newsOutput.innerHTML = "";
 				let source = data.sources;
 				for (var i = 0; i < source.length; i++) {
@@ -133,12 +95,12 @@ const newsMod = (() => {
 		//Information comes from fetchGetArticle.
 		showNewsByArticle: (article) =>  {
 			//Some articles dont have a author or publishing date so instead of it saying null
-			//It wont say anything.
+			//It will say Author or Date not listed.
 			if (article.author === null) {
-				article.author = "";		
+				article.author = "not listed";		
 			}
 			if (article.publishedAt === null) {
-				article.publishedAt = "";
+				article.publishedAt = "not listed";
 			}
 			let newsDiv = `
 			<div class="col-lg-3 col-md-6 col-sm-12">
@@ -148,7 +110,7 @@ const newsMod = (() => {
 			<h5 class="card-title">Headline: ${article.title}</h5>
 			<h5 class="card-title">Author: ${article.author}</h5>
 			<p class="card-text">Description: ${article.description}</p>
-			<p class="card-text">Date: ${article.publishedAt}</p>
+			<p class="card-text">Date published: ${article.publishedAt}</p>
 			<a class="card-text" href="${article.url}" target="_blank">${article.url}</a>
 			<br>
 			<button id="btnSave" class="btnSave btn btn-success" value="Save News" data-article='${JSON.stringify(article).replace(/'/g,"’")}'>Save News</button>
@@ -210,7 +172,7 @@ const newsMod = (() => {
 	       //invoked here in the .then callback function to make sure that you dont try to fetch GET something that hasnt been fetch POSTED
 	       //to the database yet since its done asynchronously.		
 	       newsMod.getArticlesFromDatabase();
-	     })
+	   })
 			.catch(function (error) {  
 				console.log('Request failed', error);  
 			});
@@ -246,15 +208,19 @@ const newsMod = (() => {
 			<h5 class="card-title">Headline: ${savedArticle.title}</h5>
 			<h5 class="card-title">Author: ${savedArticle.author}</h5>
 			<p class="card-text">Description: ${savedArticle.description}</p>
-			<p class="card-text">Date: ${savedArticle.publishedAt}</p>
+			<p class="card-text">Date published: ${savedArticle.publishedAt}</p>
 			<a class="card-text" href="${savedArticle.url}" target="_blank">${savedArticle.url}</a>
 			<br>
-			<button id="btnDelete" class="btnDelete btn btn-outline-danger" value="Delete News" data-articleid='${savedArticle.id}'>Delete News</button>
+			<button id="btnDelete" class="btnDelete btn btn-danger" value="Delete News" data-articleid='${savedArticle.id}'>Delete News</button>
 			</div>
 			</div>
 			</div>`;
 			mostInteresting.innerHTML += savedNewsDiv;
-
+             //Delete Button click saves a saved articles ID in a data-object.
+             //The button becomes an array with the ID from the chosen article.
+             //On click deleteArticlesFromHTML is invoked with "this.dataset.articleid" = the saved ID from the article object.
+             //deleteArticlesFromHTML in turn invoke a fetch DELETE method that has the chosen articles ID put into the fetch URL.
+             //The article is deleted from the database and the HTML is updated.
 			let delButtons = document.getElementsByClassName("btnDelete");
 			for (var i = 0; i < delButtons.length; i++) {
 				delButtons[i].addEventListener("click", function() {
@@ -282,14 +248,16 @@ const newsMod = (() => {
 			})
 			.catch(function(error) {
 				console.log(error);
-			})
-             
+			})        
 		},
-		showNhideMagic: () => {
-			//Function that controls the loading gif
-			//setTimeout for 2 seconds then the divs with the news are shown.
-			//and the newsOutput & mostInteresting div that shows the articles when the page is loaded.
+		showNhideMagic()  {
+			//Function that controls the loading gif and how the navbar collapse in mobile/ipad view.
+			//setTimeout for 2 seconds then gif fades out and the divs with the news are shown.
 			$(document).ready(function() {
+				$(".navbar-nav li a").click(function(event) {
+					if (!$(this).parent().hasClass('dropdown'))
+						$(".navbar-collapse").collapse('hide');
+				});
 				setTimeout(function(){ 
 					$('#loading').fadeOut(250, function() {
 						$('#newsOutput, #mostInteresting').addClass('visible');
@@ -335,7 +303,7 @@ document.getElementById("polygon").addEventListener("click", newsMod.findArticle
 document.getElementById("gaming").addEventListener("click", newsMod.findSourceByCategory);
 
 },
-		  //Self-invoking function that will load the DOM content and activate all the eventListeners.
+		  //Self-invoking function that will load the DOM content, first page, loading indicator, show if there are any saved articles in the DB and activate all the EventListeners.
 		  initialize: (() => {
 		  	document.addEventListener('DOMContentLoaded', () => {
 		  		newsMod.getLatestNews();
