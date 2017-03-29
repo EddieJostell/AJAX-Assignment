@@ -128,6 +128,7 @@ const newsMod = (() => {
 						$('#mostInteresting, #newsOutput').removeClass('visible');
 						$('#loading').show();
 						newsMod.saveFavoriteNews(this);
+						console.log(this);
 					});
 				}
 			},
@@ -151,11 +152,8 @@ const newsMod = (() => {
 				newsMod.showNhideMagic();
 			},
 			saveFavoriteNews: (button) =>  {
-			//Getting  the data-object from the button that we pressed to fetch POST to my "database" (json-server on newsAPI.json). 
-			//fetch POST
-			//Set to allow cross-origin requests
-			//Makes the post then alerts that it has been saved
-			//If something goes wrong the .catch function will say it failed and give a error messag statitng what went wrong.
+			//Getting the save button and in the body for the fetch POST I specify that I want to send the data-object to my "database" (herokuDB). 
+			//If something goes wrong the .catch function will say it failed and give a error message statitng what went wrong.
 			fetch('http://localhost:3000/articles', {
 				method: 'POST', 
 				mode: 'cors',
@@ -166,13 +164,11 @@ const newsMod = (() => {
 				})
 			})
 			.then(function(data) {
-				/*console.log(button.dataset.article);*/
-
 	       //Call on the function that is going to do the fetch GET from the server to show the articles on the webpage.
 	       //invoked here in the .then callback function to make sure that you dont try to fetch GET something that hasnt been fetch POSTED
 	       //to the database yet since its done asynchronously.		
 	       newsMod.getArticlesFromDatabase();
-	     })
+	   })
 			.catch(function (error) {  
 				console.log('Request failed', error);  
 			});
@@ -227,13 +223,14 @@ const newsMod = (() => {
              		$('#mostInteresting, #newsOutput').removeClass('visible');
              		$('#loading').show();
              		newsMod.deleteArticlesFromHTML(this.dataset.articleid);
+             		console.log(this.dataset.articleid);
              	});
              }
 			//Invoke loading gif
 			newsMod.showNhideMagic();
 		},
 		deleteArticlesFromHTML: (articleId) => {
-			console.log(articleId);
+			
 			fetch(`http://localhost:3000/articles/${articleId}`, {
 				method: 'DELETE', 
 				mode: 'cors', 
