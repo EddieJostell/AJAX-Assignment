@@ -4,12 +4,7 @@
 const newsMod = (() => {
 
 	return {
-		//First function that contains everything for a AJAX call.
-		//API URL that contains the information I want to gather.
-		//fetch GET method that makes a REQUEST to the API through the URL with the specified parameters I have chosen.
-		//fetch GET gets a response back that is formated into JSON that is sent forward in the fetch GET method.
-		//The information is looped through and put on the DOM with a template literal.
-		//If something goes wrong in the fetch GET process it will be caught and a error message will be delivered in the console.
+		//First function that contains a template literal that is shown on the front page.
 		getLatestNews: () => {
 			newsOutput.innerHTML = "";
 			let newsDiv = `
